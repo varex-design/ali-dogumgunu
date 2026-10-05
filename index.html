@@ -14,6 +14,7 @@
       --tape: rgba(222, 206, 178, 0.85);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    
     body {
       background-color: var(--bg);
       background-image: radial-gradient(rgba(255,255,255,0.18) 1px, transparent 1px);
@@ -22,9 +23,27 @@
       color: var(--text);
       display: flex;
       justify-content: center;
-      padding: 24px 14px 40px;
+      align-items: center;
+      min-height: 100vh;
+      padding: 16px 14px 40px;
     }
-    .wrapper { width: 100%; max-width: 420px; display: flex; flex-direction: column; gap: 26px; }
+
+    .wrapper { 
+      width: 100%; 
+      max-width: 420px; 
+      display: flex; 
+      flex-direction: column; 
+      gap: 26px; 
+    }
+
+    /* Kilit ekranının ekranın tam ortasında durmasını sağlar */
+    .lock-wrapper {
+      min-height: 85vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
     .card {
       background: var(--card-bg);
       border-radius: 26px;
@@ -32,6 +51,7 @@
       box-shadow: 0 10px 25px rgba(0,0,0,0.25);
       position: relative;
       text-align: center;
+      width: 100%;
     }
     .tape {
       width: 80px; height: 22px;
@@ -52,7 +72,7 @@
     .subtitle { font-size: 0.82rem; color: #7a736c; margin-bottom: 16px; }
     .hidden { display: none !important; }
 
-    /* Kilit Ekranı */
+    /* Kilit Alanı */
     .lock-input {
       width: 100%; padding: 13px; border-radius: 14px;
       border: 1.5px solid #d5cbbf; background: #fff;
@@ -133,7 +153,7 @@
       line-height: 1.8; color: #3d352e; font-style: italic;
     }
 
-    /* Sayfası Çevrilen Anı Defteri */
+    /* Sayfaları Çevrilen Defter */
     .notebook-container {
       background: #eee5db; border-radius: 18px; padding: 14px;
       box-shadow: inset 0 0 10px rgba(0,0,0,0.1); margin-top: 10px;
@@ -147,26 +167,119 @@
       padding: 16px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); min-height: 250px;
     }
     .book-page img { width: 100%; height: 145px; object-fit: cover; border-radius: 8px; margin-bottom: 8px; }
-    .book-page p { font-size: 0.85rem; color: #444; font-family: 'Caveat', cursive; font-size: 1.15rem; }
+    .book-page p { color: #444; font-family: 'Caveat', cursive; font-size: 1.15rem; }
     .book-nav { display: flex; justify-content: space-between; margin-top: 12px; }
     .book-btn { background: #8d6e63; color: #fff; border: none; padding: 6px 14px; border-radius: 12px; font-size: 0.8rem; cursor: pointer; }
 
-    /* Footer */
-    footer { text-align: center; color: #c9d6c5; font-size: 0.95rem; font-weight: 500; margin-top: 10px; }
+    /* Siyah Özel Footer & Açılır Pencereler */
+    .footer-dark {
+      background: #141813;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 22px;
+      padding: 24px 16px;
+      color: #e5e7eb;
+      text-align: center;
+      margin-top: 10px;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.4);
+    }
+    .footer-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #fef08a;
+      margin-bottom: 6px;
+    }
+    .footer-note {
+      font-size: 0.8rem;
+      color: #9ca3af;
+      margin-bottom: 16px;
+    }
+    .footer-actions {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .footer-btn {
+      background: #242b22;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #f3f4f6;
+      padding: 9px 13px;
+      border-radius: 14px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .footer-btn:active {
+      transform: scale(0.96);
+      background: #333d30;
+    }
+
+    /* Modal / Pop-up Tasarımı */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 999;
+    }
+    .modal-content {
+      background: #1c221b;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 22px;
+      width: 100%;
+      max-width: 340px;
+      padding: 22px 18px;
+      color: #fff;
+      text-align: center;
+      box-shadow: 0 16px 36px rgba(0,0,0,0.5);
+      animation: popIn 0.2s ease-out;
+    }
+    .modal-content h3 {
+      font-size: 1.15rem;
+      color: #fef08a;
+      margin-bottom: 10px;
+      font-family: 'Playfair Display', serif;
+    }
+    .modal-content p {
+      font-size: 0.88rem;
+      line-height: 1.55;
+      color: #d1d5db;
+      margin-bottom: 18px;
+    }
+    .modal-close-btn {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 9px 24px;
+      border-radius: 16px;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+    @keyframes popIn {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
   </style>
 </head>
 <body>
 
 <div class="wrapper">
 
-  <!-- 1. KİLİT KARTI -->
-  <div class="card" id="lockCard">
-    <div class="tape"></div>
-    <h2>Sarışınım iyi ki ✨</h2>
-    <p style="font-family: monospace; font-size: 1.1rem; margin: 10px 0; color: #5a4b41;">x_x = y_{x+4}</p>
-    <p class="subtitle">Bu sırrı açacak cevabı yaz:</p>
-    <input type="text" id="passInput" class="lock-input" placeholder="Cevabın...">
-    <button class="btn" onclick="unlockSite()">Aç</button>
+  <!-- 1. KİLİT KARTI (Ekranın Tam Ortasında) -->
+  <div class="lock-wrapper" id="lockWrapper">
+    <div class="card" id="lockCard">
+      <div class="tape"></div>
+      <h2>Sarışınım iyi ki ✨</h2>
+      <p style="font-family: monospace; font-size: 1.1rem; margin: 10px 0; color: #5a4b41;">x_x = y_{x+4}</p>
+      <p class="subtitle">Bu sırrı açacak cevabı yaz:</p>
+      <input type="text" id="passInput" class="lock-input" placeholder="Cevabın...">
+      <button class="btn" onclick="unlockSite()">Aç</button>
+    </div>
   </div>
 
   <!-- SİTENİN ANA İÇERİĞİ -->
@@ -284,13 +397,11 @@
       <p class="subtitle">Kapağa dokun ve defteri arala!</p>
       
       <div class="notebook-container">
-        <!-- Defter Kapağı -->
         <div class="notebook-cover" id="bookCover" onclick="openNotebook()">
           <h3 style="font-family:'Playfair Display', serif; font-size:1.2rem;">📒 Bizim Gülmekten Koptuğumuz Anlar</h3>
           <p style="font-size:0.8rem; margin-top:6px; opacity:0.85;">Açmak için dokun ✨</p>
         </div>
 
-        <!-- Defter Sayfaları -->
         <div class="notebook-pages" id="bookPages">
           <div class="book-page" id="page1">
             <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500" alt="Komik Anı 1">
@@ -314,21 +425,37 @@
       </div>
     </div>
 
-    <!-- 8. FOOTER -->
-    <footer>
-      iyiki dogdun pasam 😙
+    <!-- 8. YENİLENEN SİYAH FOOTER & AÇILIR PENCERELER (MODAL) -->
+    <footer class="footer-dark">
+      <div class="footer-title">iyiki dogdun pasam 😙</div>
+      <div class="footer-note">Sana özel küçük sürpriz pencereler:</div>
+      <div class="footer-actions">
+        <button class="footer-btn" onclick="openModal('wish')">🎁 Bir Dilek Tut</button>
+        <button class="footer-btn" onclick="openModal('quote')">🎶 Sözümüz</button>
+        <button class="footer-btn" onclick="openModal('secret')">🤫 Gizli Not</button>
+      </div>
     </footer>
 
   </div>
 
 </div>
 
+<!-- Açılır Pencere (Modal) Konteyneri -->
+<div id="modalOverlay" class="modal-overlay hidden" onclick="closeModalOnBg(event)">
+  <div class="modal-content">
+    <h3 id="modalTitle">Başlık</h3>
+    <p id="modalBody">İçerik buraya gelecek...</p>
+    <button class="modal-close-btn" onclick="closeModal()">Kapat ♡</button>
+  </div>
+</div>
+
 <script>
   function unlockSite() {
     const val = document.getElementById('passInput').value.trim();
     if(val !== "") {
-      document.getElementById('lockCard').classList.add('hidden');
+      document.getElementById('lockWrapper').classList.add('hidden');
       document.getElementById('mainContent').classList.remove('hidden');
+      window.scrollTo(0, 0);
     } else {
       alert("Lütfen kutucuğa bir cevap yaz :)");
     }
@@ -410,8 +537,40 @@
       updatePage();
     }
   }
+
+  // Footer Açılır Pencere (Modal) Mantığı
+  const modalData = {
+    wish: {
+      title: "Yeni Yaş Dileği ✨",
+      text: "Bu yıl hayatın sana hak ettiğin bütün güzellikleri, başarıyı ve en önemlisi benimle dolu kocaman kahkahaları getirmesini diliyorum paşam!"
+    },
+    quote: {
+      title: "Bizim Şarkımızdan 🎶",
+      text: "'Seninle geçen her saniye, ömrüme ömür katan en güzel melodi...' İyi ki varsın sarışınım."
+    },
+    secret: {
+      title: "Küçük Bir İtiraf 🤫",
+      text: "Sen güldüğünde etraftaki her şeyin sessize alınıp sadece senin sesinin kaldığı anı dünyadaki hiçbir şeye değişmem."
+    }
+  };
+
+  function openModal(type) {
+    const data = modalData[type];
+    document.getElementById('modalTitle').innerText = data.title;
+    document.getElementById('modalBody').innerText = data.text;
+    document.getElementById('modalOverlay').classList.remove('hidden');
+  }
+
+  function closeModal() {
+    document.getElementById('modalOverlay').classList.add('hidden');
+  }
+
+  function closeModalOnBg(e) {
+    if (e.target.id === 'modalOverlay') {
+      closeModal();
+    }
+  }
 </script>
 
 </body>
 </html>
-
