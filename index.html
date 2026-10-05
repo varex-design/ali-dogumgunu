@@ -36,7 +36,6 @@
       gap: 26px; 
     }
 
-    /* Kilit ekranının tam ortalanması */
     .lock-wrapper {
       min-height: 85vh;
       display: flex;
@@ -88,8 +87,11 @@
 
     /* Yıldızlı Arka Plan & Sallanan Polaroidler */
     .starry-card {
-      background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.82)), url('https://ibb.co/dwXKp3xh') center/cover;
+      background: #111827;
+      background-size: cover;
+      background-position: center;
       color: #f1f5f9;
+      transition: background 0.3s ease;
     }
     .starry-card h2 { color: #fef08a; }
     .starry-card .subtitle { color: #cbd5e1; }
@@ -102,7 +104,7 @@
       color: #333; animation: floatAnim 3.5s ease-in-out infinite alternate;
     }
     .polaroid.p2 { animation-delay: -1.7s; }
-    .polaroid img { width: 100%; height: 125px; object-fit: cover; border-radius: 4px; }
+    .polaroid img { width: 100%; height: 125px; object-fit: cover; border-radius: 4px; background: #eee; }
     .polaroid span { font-family: 'Caveat', cursive; font-size: 1.1rem; display: block; margin-top: 6px; }
     @keyframes floatAnim {
       0% { transform: translateY(0) rotate(-3deg); }
@@ -123,16 +125,16 @@
     }
     .tile.selected { outline: 3px solid var(--accent); transform: scale(0.96); }
 
-    /* 10 Anı Görseli ve Yazıları */
+    /* 10 Anı Görseli */
     .memories-list { display: flex; flex-direction: column; gap: 18px; margin-top: 10px; }
     .memory-card {
       background: #fdfdfd; border: 1px solid #eee; border-radius: 16px;
       overflow: hidden; text-align: left; box-shadow: 0 4px 10px rgba(0,0,0,0.04);
     }
-    .memory-card img { width: 100%; height: 195px; object-fit: cover; }
+    .memory-card img { width: 100%; height: 210px; object-fit: cover; background: #f0f0f0; }
     .memory-card .content { padding: 12px 14px; }
     .memory-card h4 { font-size: 0.95rem; color: var(--accent); margin-bottom: 4px; font-weight: 600; }
-    .memory-card p { font-size: 0.85rem; color: #555; line-height: 1.45; min-height: 18px; }
+    .memory-card p { font-size: 0.85rem; color: #555; line-height: 1.45; min-height: 14px; }
 
     /* Spiral Mektup Kartı */
     .letter-card {
@@ -166,12 +168,12 @@
       display: none; background: #fff; border-radius: 12px;
       padding: 16px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); min-height: 250px;
     }
-    .book-page img { width: 100%; height: 170px; object-fit: cover; border-radius: 8px; margin-bottom: 8px; }
+    .book-page img { width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 8px; background: #f0f0f0; }
     .book-page p { color: #444; font-family: 'Caveat', cursive; font-size: 1.15rem; }
     .book-nav { display: flex; justify-content: space-between; margin-top: 12px; }
     .book-btn { background: #8d6e63; color: #fff; border: none; padding: 6px 14px; border-radius: 12px; font-size: 0.8rem; cursor: pointer; }
 
-    /* Siyah Özel Footer & Açılır Pencereler */
+    /* Siyah Footer & Pop-up */
     .footer-dark {
       background: #141813;
       border: 1px solid rgba(255, 255, 255, 0.08);
@@ -208,14 +210,8 @@
       font-size: 0.78rem;
       font-weight: 500;
       cursor: pointer;
-      transition: background 0.2s, transform 0.15s;
-    }
-    .footer-btn:active {
-      transform: scale(0.96);
-      background: #333d30;
     }
 
-    /* Modal / Pop-up Tasarımı */
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
@@ -237,33 +233,10 @@
       color: #fff;
       text-align: center;
       box-shadow: 0 16px 36px rgba(0,0,0,0.5);
-      animation: popIn 0.2s ease-out;
     }
-    .modal-content h3 {
-      font-size: 1.15rem;
-      color: #fef08a;
-      margin-bottom: 10px;
-      font-family: 'Playfair Display', serif;
-    }
-    .modal-content p {
-      font-size: 0.88rem;
-      line-height: 1.55;
-      color: #d1d5db;
-      margin-bottom: 18px;
-    }
-    .modal-close-btn {
-      background: var(--accent);
-      color: #fff;
-      border: none;
-      padding: 9px 24px;
-      border-radius: 16px;
-      font-size: 0.85rem;
-      cursor: pointer;
-    }
-    @keyframes popIn {
-      from { transform: scale(0.9); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
+    .modal-content h3 { font-size: 1.15rem; color: #fef08a; margin-bottom: 10px; font-family: 'Playfair Display', serif; }
+    .modal-content p { font-size: 0.88rem; line-height: 1.55; color: #d1d5db; margin-bottom: 18px; }
+    .modal-close-btn { background: var(--accent); color: #fff; border: none; padding: 9px 24px; border-radius: 16px; font-size: 0.85rem; cursor: pointer; }
   </style>
 </head>
 <body>
@@ -286,18 +259,18 @@
   <div id="mainContent" class="hidden" style="display: flex; flex-direction: column; gap: 26px;">
 
     <!-- 2. İKİMİZİN FOTOĞRAFLARI & KÜÇÜKLÜKLER (Yıldızlı Kart) -->
-    <div class="card starry-card">
+    <div class="card starry-card" id="starryCard">
       <div class="tape"></div>
       <h2>Miniğim ve miniğimin ekürisi 🌸</h2>
       <p class="subtitle">Yıllar öncesinden bugüne yazılan en güzel tesadüf...</p>
       
       <div class="polaroid-group">
         <div class="polaroid">
-          <img src="https://ibb.co/xtZtHLJD" alt="Küçük Ali">
+          <img data-ibb="https://ibb.co/xtZtHLJD" alt="Küçük Ali">
           <span>Küçük Ali 🧸</span>
         </div>
         <div class="polaroid p2">
-          <img src="https://ibb.co/rKHQvgcN" alt="Küçük Ben">
+          <img data-ibb="https://ibb.co/rKHQvgcN" alt="Küçük Ben">
           <span>Ve Ekürisi 🎀</span>
         </div>
       </div>
@@ -333,43 +306,43 @@
       
       <div class="memories-list">
         <div class="memory-card">
-          <img src="https://ibb.co/nMDhMxCh" alt="öpüşememe sorunsalı">
+          <img data-ibb="https://ibb.co/nMDhMxCh" alt="öpüşememe sorunsalı">
           <div class="content"><h4>öpüşememe sorunsalı</h4><p></p></div>
         </div>
         <div class="memory-card">
-          <img src="https://ibb.co/N6gfs938" alt="mezun çift">
+          <img data-ibb="https://ibb.co/N6gfs938" alt="mezun çift">
           <div class="content"><h4>mezun çift</h4><p></p></div>
         </div>
         <div class="memory-card">
-          <img src="https://ibb.co/pjKd0XnF" alt="merhaba kula">
+          <img data-ibb="https://ibb.co/pjKd0XnF" alt="merhaba kula">
           <div class="content"><h4>merhaba kula</h4><p></p></div>
         </div>
         <div class="memory-card">
-          <img src="https://ibb.co/DPwX41vm" alt="sanırım soğuk hava">
+          <img data-ibb="https://ibb.co/DPwX41vm" alt="sanırım soğuk hava">
           <div class="content"><h4>sanırım soğuk hava</h4><p></p></div>
         </div>
         <div class="memory-card">
-          <img src="https://ibb.co/MybPB8Q1" alt="luck sahipleri">
+          <img data-ibb="https://ibb.co/MybPB8Q1" alt="luck sahipleri">
           <div class="content"><h4>luck sahipleri</h4><p></p></div>
         </div>
         <div class="memory-card">
-          <img src="https://ibb.co/Gf1vPdq9" alt="güzel kombin nalet gün">
+          <img data-ibb="https://ibb.co/Gf1vPdq9" alt="güzel kombin nalet gün">
           <div class="content"><h4>güzel kombin nalet gün</h4><p></p></div>
         </div>
         <div class="memory-card">
-          <img src="https://ibb.co/gLhKsKwx" alt="YA AŞIĞIM">
+          <img data-ibb="https://ibb.co/gLhKsKwx" alt="YA AŞIĞIM">
           <div class="content"><h4>YA AŞIĞIM</h4><p></p></div>
         </div>
         <div class="memory-card">
-          <img src="https://ibb.co/9m7H8cjV" alt="benim yakışıklı futbolcum">
+          <img data-ibb="https://ibb.co/9m7H8cjV" alt="benim yakışıklı futbolcum">
           <div class="content"><h4>benim yakışıklı futbolcum (sakatlanmasan iyiydi)</h4><p></p></div>
         </div>
         <div class="memory-card">
-          <img src="https://ibb.co/QS9s2mz" alt="hop babalar kampüs">
+          <img data-ibb="https://ibb.co/QS9s2mz" alt="hop babalar kampüs">
           <div class="content"><h4>hop babalar kampüs</h4><p></p></div>
         </div>
         <div class="memory-card">
-          <img src="https://ibb.co/nsvH622Z" alt="megatron misali">
+          <img data-ibb="https://ibb.co/nsvH622Z" alt="megatron misali">
           <div class="content"><h4>megatron misali</h4><p></p></div>
         </div>
       </div>
@@ -404,19 +377,19 @@
 
         <div class="notebook-pages" id="bookPages">
           <div class="book-page" id="page1">
-            <img src="https://ibb.co/ycWjzFWR" alt="aşığım şu gülüşe">
+            <img data-ibb="https://ibb.co/ycWjzFWR" alt="aşığım şu gülüşe">
             <p>aşığım şu gülüşee</p>
           </div>
           <div class="book-page hidden" id="page2">
-            <img src="https://ibb.co/KpCDbMJR" alt="uykucular">
+            <img data-ibb="https://ibb.co/KpCDbMJR" alt="uykucular">
             <p>uykucular</p>
           </div>
           <div class="book-page hidden" id="page3">
-            <img src="https://ibb.co/CpYNjXDF" alt="AAAA">
+            <img data-ibb="https://ibb.co/CpYNjXDF" alt="AAAA">
             <p>AAAA</p>
           </div>
           <div class="book-page hidden" id="page4">
-            <img src="https://ibb.co/2G6t8ky" alt="karpuz kötüydü">
+            <img data-ibb="https://ibb.co/2G6t8ky" alt="karpuz kötüydü">
             <p>karpuz kötüydü kocam haklı</p>
           </div>
 
@@ -454,6 +427,40 @@
 </div>
 
 <script>
+  // Otomatik ImgBB Görsel Çözücü
+  async function resolveIbbImage(ibbUrl) {
+    try {
+      const proxy = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(ibbUrl);
+      const res = await fetch(proxy);
+      const text = await res.text();
+      const match = text.match(/<meta\s+property=["']og:image["']\s+content=["']([^"']+)["']/i) || 
+                    text.match(/<link\s+rel=["']image_src["']\s+href=["']([^"']+)["']/i);
+      if (match && match[1]) return match[1];
+    } catch(e) {}
+    return ibbUrl;
+  }
+
+  // Sayfadaki tüm görselleri ve arka planı yükle
+  async function loadAllImages() {
+    // 1. Arka plan
+    const bgUrl = await resolveIbbImage("https://ibb.co/dwXKp3xh");
+    const starry = document.getElementById('starryCard');
+    if (starry) {
+      starry.style.backgroundImage = `linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.85)), url('${bgUrl}')`;
+    }
+
+    // 2. Tüm img etiketleri
+    const imgs = document.querySelectorAll('img[data-ibb]');
+    imgs.forEach(async (img) => {
+      const real = await resolveIbbImage(img.getAttribute('data-ibb'));
+      img.src = real;
+    });
+
+    // 3. Puzzle görseli
+    const puzzleReal = await resolveIbbImage("https://ibb.co/tM3ZDKkj");
+    initPuzzle(puzzleReal);
+  }
+
   function unlockSite() {
     const val = document.getElementById('passInput').value.trim();
     if(val !== "") {
@@ -466,10 +473,10 @@
   }
 
   // Puzzle Mantığı
-  const imgUrl = "https://ibb.co/tM3ZDKkj"; 
   let pieces = [0, 1, 2, 3];
   let shuffled = [2, 0, 3, 1];
   let selectedIdx = null;
+  let currentPuzzleImg = "https://ibb.co/tM3ZDKkj";
 
   const positions = [
     { x: "0%", y: "0%" },
@@ -478,13 +485,18 @@
     { x: "100%", y: "100%" }
   ];
 
+  function initPuzzle(img) {
+    currentPuzzleImg = img;
+    renderPuzzle();
+  }
+
   function renderPuzzle() {
     const grid = document.getElementById('puzzle');
     grid.innerHTML = '';
     shuffled.forEach((pieceId, idx) => {
       const tile = document.createElement('div');
       tile.className = 'tile' + (selectedIdx === idx ? ' selected' : '');
-      tile.style.backgroundImage = `url('${imgUrl}')`;
+      tile.style.backgroundImage = `url('${currentPuzzleImg}')`;
       tile.style.backgroundPosition = `${positions[pieceId].x} ${positions[pieceId].y}`;
       tile.onclick = () => selectTile(idx);
       grid.appendChild(tile);
@@ -509,7 +521,6 @@
       document.getElementById('puzzleSuccess').innerText = "Tebrikler! Bütün parçalar yerine oturdu ♡";
     }
   }
-  renderPuzzle();
 
   // Defter Fonksiyonları (4 Sayfalı)
   let currentPage = 1;
@@ -542,7 +553,7 @@
     }
   }
 
-  // Footer Açılır Pencere (Modal) Mantığı
+  // Modal
   const modalData = {
     wish: {
       title: "Yeni Yaş Dileği ✨",
@@ -574,7 +585,9 @@
       closeModal();
     }
   }
-</script>
 
+  // Sayfa açıldığında görselleri otomatik çöz ve yükle
+  loadAllImages();
+</script>
 </body>
 </html>
