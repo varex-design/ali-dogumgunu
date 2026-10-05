@@ -450,7 +450,7 @@
     .book-nav { display: flex; justify-content: space-between; margin-top: 14px; }
     .book-btn { background: #8d6e63; color: #fff; border: none; padding: 8px 18px; border-radius: 12px; font-size: 0.85rem; cursor: pointer; }
 
-    /* SPOTIFY TAM EKRAN */
+    /* SPOTIFY TAM EKRAN (GÜÇLÜ YÖNLENDİRME) */
     .spotify-fullscreen {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
@@ -460,9 +460,10 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 20px 16px;
+      padding: 24px 16px;
       z-index: 99999;
       animation: fadeIn 0.4s ease-out;
+      text-align: center;
     }
     @keyframes fadeIn {
       from { opacity: 0; transform: scale(0.97); }
@@ -474,37 +475,34 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 14px;
+      margin-bottom: 20px;
     }
-    .spotify-badge { font-size: 0.82rem; letter-spacing: 1px; text-transform: uppercase; opacity: 0.85; font-weight: 600; }
+    .spotify-badge { font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; opacity: 0.9; font-weight: 600; }
     .spotify-timer { background: rgba(255,255,255,0.18); padding: 5px 12px; border-radius: 20px; font-size: 0.78rem; font-weight: 600; }
-    .spotify-embed-container {
-      width: 100%; max-width: 420px;
-      box-shadow: 0 16px 36px rgba(0,0,0,0.6);
-      border-radius: 16px; overflow: hidden;
-      margin-bottom: 10px;
-    }
-    .play-trigger-btn {
+    
+    .spotify-big-btn {
       background: #1ed760;
       color: #000;
       border: none;
-      padding: 14px 28px;
-      border-radius: 30px;
-      font-size: 1rem;
+      padding: 18px 32px;
+      border-radius: 35px;
+      font-size: 1.1rem;
       font-weight: 800;
       cursor: pointer;
-      box-shadow: 0 6px 20px rgba(30,215,96,0.7);
+      box-shadow: 0 8px 25px rgba(30,215,96,0.7);
       animation: pulseBtn 1.2s infinite;
-      margin-bottom: 8px;
+      margin: 20px 0;
+      text-decoration: none;
+      display: inline-block;
     }
     @keyframes pulseBtn {
       0% { transform: scale(1); }
-      50% { transform: scale(1.08); }
+      50% { transform: scale(1.06); }
       100% { transform: scale(1); }
     }
-    .spotify-note { font-family: 'Caveat', cursive; font-size: 1.35rem; color: #fef08a; margin-top: 10px; text-align: center; }
+    .spotify-note { font-family: 'Caveat', cursive; font-size: 1.5rem; color: #fef08a; margin-top: 15px; }
     .spotify-continue-btn {
-      margin-top: 16px; background: rgba(255,255,255,0.2); color: #fff; font-weight: 600;
+      margin-top: 20px; background: rgba(255,255,255,0.2); color: #fff; font-weight: 600;
       padding: 10px 24px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.3); font-size: 0.88rem;
       cursor: pointer;
     }
@@ -528,11 +526,11 @@
       font-size: 0.78rem; font-weight: 500; cursor: pointer;
     }
 
-    /* POP-UP MODAL STİLLERİ */
+    /* KUSURSUZ OKUNABİLİR MODAL STİLİ */
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(0, 0, 0, 0.75);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -540,13 +538,14 @@
       padding: 20px;
     }
     .modal-content {
-      background: var(--card-bg);
-      border-radius: 22px;
-      padding: 24px 20px;
+      background: #fffaf0;
+      border: 2px solid #e2d2be;
+      border-radius: 24px;
+      padding: 28px 22px;
       width: 100%;
-      max-width: 340px;
+      max-width: 360px;
       text-align: center;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+      box-shadow: 0 16px 35px rgba(0,0,0,0.4);
       animation: fadeInModal 0.3s ease-out;
     }
     @keyframes fadeInModal {
@@ -555,22 +554,22 @@
     }
     .modal-content h3 {
       font-family: 'Playfair Display', serif;
-      font-size: 1.25rem;
+      font-size: 1.35rem;
       color: var(--accent);
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
     .modal-content p {
-      font-size: 0.9rem;
-      color: var(--text-main);
-      line-height: 1.6;
-      margin-bottom: 18px;
+      font-size: 0.95rem;
+      color: #2b2521;
+      line-height: 1.7;
+      margin-bottom: 20px;
     }
     .modal-close-btn {
       background: var(--accent);
       color: #fff;
       border: none;
-      padding: 10px 22px;
-      border-radius: 18px;
+      padding: 10px 24px;
+      border-radius: 20px;
       font-size: 0.9rem;
       font-weight: 500;
       cursor: pointer;
@@ -941,27 +940,28 @@
     </div>
   </div>
 
-  <!-- SPOTIFY TAM EKRAN -->
+  <!-- SPOTIFY TAM EKRAN (DIREKT UYGULAMA / WEB BAGLANTISI) -->
   <div id="spotifyFullscreen" class="spotify-fullscreen hidden">
     <div class="spotify-top-bar">
       <span class="spotify-badge">✨ Özel Şarkımız</span>
-      <span class="spotify-timer" id="spotifyTimer">⏳ 15 sn</span>
+      <span class="spotify-timer" id="spotifyTimer">🎵 Buluşma Noktası</span>
     </div>
-    
-    <div class="spotify-embed-container" id="spotifyEmbedWrapper"></div>
 
-    <button id="playAudioTrigger" class="play-trigger-btn" onclick="triggerMusicPlay()">
-      ▶ ŞARKIMIZI BAŞLAT ♫
-    </button>
+    <p style="font-size: 1.1rem; margin-bottom: 10px; font-weight: 500;">Bulmacayı çözdün, sıra şarkımızda!</p>
+
+    <!-- Kesin Çalışan Spotify Butonu -->
+    <a href="https://open.spotify.com/track/1AlG0sHFDQJP2HdXyQb8bL" target="_blank" class="spotify-big-btn">
+      ▶ SPOTIFY'DA DİNLE ♫
+    </a>
 
     <p class="spotify-note">"Biz beraber büyüdük..." 💚</p>
 
-    <button id="spotifyContinueBtn" class="spotify-continue-btn hidden" onclick="closeSpotifyOverlay()">
-      Siteye Devam Et ♡
+    <button class="spotify-continue-btn" onclick="closeSpotifyOverlay()">
+      Süper, Siteye Dön ♡
     </button>
   </div>
 
-  <!-- Pop-up (Modal) Ekranı -->
+  <!-- KUSURSUZ OKUNABİLİR POP-UP MODAL -->
   <div id="modalOverlay" class="modal-overlay hidden" onclick="closeModalOnBg(event)">
     <div class="modal-content">
       <h3 id="modalTitle">Başlık</h3>
@@ -1082,39 +1082,11 @@
     }
     renderPuzzle();
 
-    // SPOTIFY OYNATMA FONKSİYONLARI
+    // SPOTIFY TAM EKRAN AÇILIŞI
     function launchSpotifyFullscreen() {
       const overlay = document.getElementById('spotifyFullscreen');
-      const wrapper = document.getElementById('spotifyEmbedWrapper');
-      
-      wrapper.innerHTML = `<iframe id="mainSpotifyPlayer" style="border-radius:16px" src="https://open.spotify.com/embed/track/1AlG0sHFDQJP2HdXyQb8bL?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`;
-
       overlay.classList.remove('hidden');
       document.body.classList.add('locked-scroll');
-
-      let seconds = 15;
-      const timerEl = document.getElementById('spotifyTimer');
-      const continueBtn = document.getElementById('spotifyContinueBtn');
-
-      const countdown = setInterval(() => {
-        seconds--;
-        if (seconds > 0) {
-          timerEl.innerText = `⏳ ${seconds} sn`;
-        } else {
-          clearInterval(countdown);
-          timerEl.innerText = "✨ Şarkımız Çalıyor";
-          continueBtn.classList.remove('hidden');
-        }
-      }, 1000);
-    }
-
-    function triggerMusicPlay() {
-      const btn = document.getElementById('playAudioTrigger');
-      btn.innerText = "🎶 Çalıyor...";
-      btn.style.animation = "none";
-      btn.style.opacity = "0.7";
-      const wrapper = document.getElementById('spotifyEmbedWrapper');
-      wrapper.innerHTML = `<iframe id="mainSpotifyPlayer" style="border-radius:16px" src="https://open.spotify.com/embed/track/1AlG0sHFDQJP2HdXyQb8bL?utm_source=generator&theme=0&autoplay=1" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`;
     }
 
     function closeSpotifyOverlay() {
@@ -1152,7 +1124,6 @@
       }
     }
 
-    // FOOTER MODAL (KÜÇÜK PENCERELER) İÇİN MANTIK
     const modalData = {
       wish: {
         title: "Yeni Yaş Dileği ✨",
