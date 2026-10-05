@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>İyi ki Doğdun Ali ✨</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #3a4738;
+      --card-bg: #fdfbf7;
+      --accent: #7c4b4b;
+      --text: #2f2e2e;
+      --tape: rgba(222, 206, 178, 0.85);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      background-image: radial-gradient(rgba(255,255,255,0.18) 1px, transparent 1px);
+      background-size: 20px 20px;
+      font-family: 'Poppins', sans-serif;
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      padding: 24px 14px 60px;
+    }
+    .wrapper { width: 100%; max-width: 410px; display: flex; flex-direction: column; gap: 28px; }
+    .card {
+      background: var(--card-bg);
+      border-radius: 26px;
+      padding: 28px 20px 24px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.22);
+      position: relative;
+      text-align: center;
+    }
+    .tape {
+      width: 80px; height: 22px;
+      background: var(--tape);
+      position: absolute;
+      top: -10px; left: 50%;
+      transform: translateX(-50%) rotate(-1deg);
+      border-radius: 2px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+    }
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.45rem;
+      color: #3b322c;
+      margin-bottom: 6px;
+    }
+    .subtitle { font-size: 0.85rem; color: #7a736c; margin-bottom: 16px; }
+    .hidden { display: none !important; }
+
+    /* Kilit Ekranı */
+    .lock-input {
+      width: 100%; padding: 13px; border-radius: 14px;
+      border: 1.5px solid #d5cbbf; background: #fff;
+      font-size: 0.95rem; margin-top: 10px; outline: none;
+      text-align: center;
+    }
+    .btn {
+      width: 100%; padding: 13px; margin-top: 14px;
+      border-radius: 20px; border: none;
+      background: var(--accent); color: #fff;
+      font-size: 1rem; font-weight: 500; cursor: pointer;
+    }
+
+    /* 2x2 Puzzle */
+    .puzzle-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 6px; width: 240px; height: 240px; margin: 15px auto;
+      border-radius: 12px; overflow: hidden;
+      border: 3px solid #dfd7cc; background: #ece5dc;
+    }
+    .tile {
+      width: 100%; height: 100%;
+      background-size: 240px 240px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: transform 0.15s ease;
+    }
+    .tile.selected { outline: 3px solid var(--accent); transform: scale(0.96); }
+
+    /* Spotify Çalar */
+    .spotify-box {
+      border-radius: 14px; overflow: hidden; margin-top: 12px;
+    }
+
+    /* Anılar & Not */
+    .memory-item {
+      background: #f4ede4; border-radius: 16px;
+      padding: 12px; margin-top: 10px; text-align: left;
+      font-size: 0.88rem;
+    }
+    .memory-item span { font-weight: 600; color: var(--accent); display: block; }
+  </style>
+</head>
+<body>
+
+<div class="wrapper">
+
+  <!-- 1. KİLİT KARTI -->
+  <div class="card" id="lockCard">
+    <div class="tape"></div>
+    <h2>Küçük bir sır ♡</h2>
+    <p style="font-family: monospace; font-size: 1.1rem; margin: 10px 0; color: #5a4b41;">x_x = y_{x+4}</p>
+    <p class="subtitle">Bu sırrı açacak cevabı yaz:</p>
+    <input type="text" id="passInput" class="lock-input" placeholder="Cevabın...">
+    <button class="btn" onclick="unlockSite()">Aç</button>
+  </div>
+
+  <!-- SİTENİN ANA İÇERİĞİ (Şifre girilince açılır) -->
+  <div id="mainContent" class="hidden" style="display: flex; flex-direction: column; gap: 28px;">
+
+    <!-- 2. PUZZLE KARTI -->
+    <div class="card">
+      <div class="tape"></div>
+      <h2>Bizim Parçamız 🧩</h2>
+      <p class="subtitle">İki parçaya dokunarak yerlerini değiştir ve resmi tamamla!</p>
+      <div class="puzzle-grid" id="puzzle"></div>
+      <p id="puzzleSuccess" class="subtitle" style="color: var(--accent); font-weight: 600;"></p>
+    </div>
+
+    <!-- 3. SPOTIFY KARTI -->
+    <div class="card">
+      <div class="tape"></div>
+      <h2>Bizim Şarkımız ♫</h2>
+      <p class="subtitle">Şarkıyı buradan dinleyebilirsin</p>
+      <div class="spotify-box">
+        <!-- Spotify şarkı ID'sini linkteki kısımla değiştirebilirsin -->
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/4cOdK2wGLETKBW3PvgPWqT?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      </div>
+    </div>
+
+    <!-- 4. ANILAR KARTI -->
+    <div class="card">
+      <div class="tape"></div>
+      <h2>Küçük Anılarımız ✨</h2>
+      <div class="memory-item">
+        <span>07.10</span>
+        Dünyanın en şanslı insanı olmamı sağlayan o özel gün.
+      </div>
+      <div class="memory-item">
+        <span>İlk Gülüşün</span>
+        Zamanın durduğu ve sadece senin kaldığın o an.
+      </div>
+      <div class="memory-item">
+        <span>İyi ki Sen!</span>
+        Yeni yaşın sana tüm güzellikleri getirsin sevgilim.
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+  // Kilit Açma (İster formülü çözsün, ister 'bilmiyorum' veya 'ali' yazsın açılır)
+  function unlockSite() {
+    const val = document.getElementById('passInput').value.trim().toLowerCase();
+    if(val !== "") {
+      document.getElementById('lockCard').classList.add('hidden');
+      document.getElementById('mainContent').classList.remove('hidden');
+    } else {
+      alert("Lütfen kutucuğa bir cevap yaz :)");
+    }
+  }
+
+  // 2x2 Puzzle Mantığı
+  const imgUrl = "https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=500&auto=format&fit=crop&q=60"; 
+  let pieces = [0, 1, 2, 3];
+  let shuffled = [2, 0, 3, 1]; // Başlangıçta karışık
+  let selectedIdx = null;
+
+  const positions = [
+    { x: "0%", y: "0%" },
+    { x: "100%", y: "0%" },
+    { x: "0%", y: "100%" },
+    { x: "100%", y: "100%" }
+  ];
+
+  function renderPuzzle() {
+    const grid = document.getElementById('puzzle');
+    grid.innerHTML = '';
+    shuffled.forEach((pieceId, idx) => {
+      const tile = document.createElement('div');
+      tile.className = 'tile' + (selectedIdx === idx ? ' selected' : '');
+      tile.style.backgroundImage = `url('${imgUrl}')`;
+      tile.style.backgroundPosition = `${positions[pieceId].x} ${positions[pieceId].y}`;
+      tile.onclick = () => selectTile(idx);
+      grid.appendChild(tile);
+    });
+  }
+
+  function selectTile(idx) {
+    if (selectedIdx === null) {
+      selectedIdx = idx;
+    } else {
+      let temp = shuffled[selectedIdx];
+      shuffled[selectedIdx] = shuffled[idx];
+      shuffled[idx] = temp;
+      selectedIdx = null;
+      checkWin();
+    }
+    renderPuzzle();
+  }
+
+  function checkWin() {
+    if (shuffled.every((val, i) => val === pieces[i])) {
+      document.getElementById('puzzleSuccess').innerText = "Tebrikler! Bütün parçalar yerine oturdu ♡";
+    }
+  }
+
+  renderPuzzle();
+</script>
+
+</body>
+</html>
