@@ -687,7 +687,7 @@
       <!-- 5. KULLANILABİLİR SEVGİ KUPONLARI -->
       <div class="card">
         <div class="tape"></div>
-        <h2>Ali'ye Özel Sevgi Kuponları 🎟️️</h2>
+        <h2>Ali'ye Özel Sevgi Kuponları 🎟️</h2>
         <p class="subtitle">Dokun ve istediğin an hakkını kullan!</p>
 
         <div class="coupons-list">
@@ -968,13 +968,14 @@
 
   <script>
     function unlockSite() {
-      const val = document.getElementById('passInput').value.trim();
-      if(val !== "") {
+      const val = document.getElementById('passInput').value.trim().toLowerCase();
+      // Burada denklemin cevabına göre doğru şifreyi kontrol ediyoruz (Örn: matematiksel cevabı veya belirlediğin şifre neyse, örneğin "0" ya da "1" vb. Buraya doğru cevabı yazabilirsin, şimdilik örnek olarak boş bırakmıyoruz ve belirli bir metin istiyoruz)
+      if(val === "0" || val === "1" || val === "x" || val === "e") { // Doğru şifre kontrolü (kendi cevabına göre burayı değiştirebilirsin, örn: "3" veya "1")
         document.getElementById('lockWrapper').classList.add('hidden');
         document.getElementById('mainContent').classList.remove('hidden');
         window.scrollTo(0, 0);
       } else {
-        alert("Lütfen bir cevap yaz :)");
+        alert("Yanlış cevap sevgilim, ipucu: Denklemi dikkatlice çöz :)");
       }
     }
 
