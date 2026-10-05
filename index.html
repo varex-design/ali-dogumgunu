@@ -236,7 +236,8 @@
       100% { transform: translateX(-50%) scale(1.15) rotate(2deg); }
     }
     @keyframes riseSmoke {
-      0% { opacity: 1; transform: translate(-50%, -30px) scale(2.5); }
+      0% { opacity: 1; transform: translate(-50%, 0) scale(1); }
+      100% { opacity: 0; transform: translate(-50%, -30px) scale(2.5); }
     }
 
     .counter-grid {
@@ -328,12 +329,13 @@
       100% { transform: translateY(-7px) rotate(3deg); }
     }
 
+    /* 3x3 YENİ YÜZLERE ODAKLI PUZZLE */
     .puzzle-grid {
       display: grid; 
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 2px; 
-      width: 260px; 
-      height: 320px; 
+      width: 270px; 
+      height: 330px; 
       margin: 14px auto;
       border-radius: 14px; 
       overflow: hidden;
@@ -343,11 +345,11 @@
     }
     .tile {
       width: 100%; height: 100%;
-      background-size: 260px 420px;
+      background-size: 270px 480px; /* Üstteki yüzlere odaklama */
       cursor: pointer;
       transition: transform 0.12s ease;
     }
-    .tile.selected { outline: 3px solid var(--accent); transform: scale(0.96); z-index: 2; }
+    .tile.selected { outline: 3px solid var(--accent); transform: scale(0.95); z-index: 2; }
 
     .memories-grid { 
       display: grid; 
@@ -649,7 +651,7 @@
         </p>
       </div>
 
-      <!-- 7. PUZZLE KARTI -->
+      <!-- 7. YENİ 3x3 PUZZLE KARTI -->
       <div class="card" id="puzzleCard">
         <div class="tape"></div>
         <h2>Bizim Parçamız 🧩</h2>
@@ -664,7 +666,7 @@
         <h2>Bizim Şarkımız ♫</h2>
         <p class="subtitle">Anıl Piyancı - Beraber Büyüdük</p>
         <div style="border-radius:14px; overflow:hidden;">
-          <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/1AlG0sHFDQJP2HdXyQb8bL?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+          <iframe id="spotifyMiniIframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/1AlG0sHFDQJP2HdXyQb8bL?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
       </div>
 
@@ -718,7 +720,7 @@
         </div>
       </div>
 
-      <!-- 10. 10 SAYFALIK DEFTER -->
+      <!-- 10. 10 SAYFALIK DEFTER (Görsel Hatasız) -->
       <div class="card">
         <div class="tape"></div>
         <h2>Komik & Özel Anılar Defteri 📖</h2>
@@ -753,7 +755,7 @@
               <p>best couple ever v1 ✨</p>
             </div>
             <div class="book-page hidden" id="page6">
-              <img src="d8fdd3d0-a7e9-4823-9987-2b1a7e0c5207.jpeg" alt="best couple ever v1">
+              <img src="d8fdd3d0-a7e9-4823-9987-2b1a7e0c5207.jpeg" onerror="this.onerror=null; this.src='a9219f0f-c468-4475-93d0-17ffbafc467c.jpeg';" alt="best couple ever v1">
               <p>best couple ever v1 🤍</p>
             </div>
             <div class="book-page hidden" id="page7">
@@ -782,7 +784,7 @@
         </div>
       </div>
 
-      <!-- 11. DEFTERDEN HEMEN SONRAKİ ÖZEL ANILAR (2'Lİ YAN YANA KARTLAR) -->
+      <!-- 11. DEFTERDEN HEMEN SONRAKİ ÖZEL ANILAR (Hatasız & Güvenli Görsel Bağlantıları) -->
       <div class="card">
         <div class="tape"></div>
         <h2>Özel Karelerimiz ✨</h2>
@@ -798,7 +800,7 @@
             <div class="content"><h4>Hot couple 🔥</h4></div>
           </div>
           <div class="memory-card">
-            <img src="db3de0d3-165e-4644-aa38-0710c88378d3.jpeg" alt="Bat couple">
+            <img src="db3de0d3-165e-4644-aa38-0710c88378d3.jpeg" onerror="this.onerror=null; this.src='76f5fd43-fa4e-431d-84c2-728f92146a2c.jpeg';" alt="Bat couple">
             <div class="content"><h4>Bat couple 🦇</h4></div>
           </div>
           <div class="memory-card">
@@ -861,15 +863,15 @@
     </div>
   </div>
 
-  <!-- 15 SANİYELİK KİLİTLİ SPOTIFY EKRANI -->
+  <!-- OTOMATİK BAŞLAYAN 15 SANİYELİK KİLİTLİ SPOTIFY EKRANI -->
   <div id="spotifyFullscreen" class="spotify-fullscreen hidden">
     <div class="spotify-top-bar">
       <span class="spotify-badge">✨ Özel Şarkımız Çalıyor</span>
       <span class="spotify-timer" id="spotifyTimer">⏳ 15 sn</span>
     </div>
     
-    <div class="spotify-embed-container">
-      <iframe style="border-radius:16px" src="https://open.spotify.com/embed/track/1AlG0sHFDQJP2HdXyQb8bL?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    <div class="spotify-embed-container" id="spotifyEmbedWrapper">
+      <!-- Tam Ekran Otomatik Başlatma Parametreli Embed -->
     </div>
 
     <p class="spotify-note">"Biz beraber büyüdük..." 💚</p>
@@ -952,16 +954,17 @@
       }
     }
 
+    // 3x3 YÜZLERE ODAKLI VE ELSİZ PUZZLE MANTIĞI
     const currentPuzzleImg = "af2888eb-7c2d-4fab-918f-8e5414292192.jpeg"; 
-    let pieces = [0, 1, 2, 3];
-    let shuffled = [2, 0, 3, 1];
+    let pieces = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+    let shuffled = [3, 0, 7, 1, 8, 2, 5, 4, 6];
     let selectedIdx = null;
 
+    // 3x3 Koordinatlar (Yüzlere ve kep kısmına tam hizalı)
     const positions = [
-      { x: "0%", y: "0%" },
-      { x: "100%", y: "0%" },
-      { x: "0%", y: "45%" },
-      { x: "100%", y: "45%" }
+      { x: "0%", y: "0%" },   { x: "50%", y: "0%" },   { x: "100%", y: "0%" },
+      { x: "0%", y: "25%" },  { x: "50%", y: "25%" },  { x: "100%", y: "25%" },
+      { x: "0%", y: "45%" },  { x: "50%", y: "45%" },  { x: "100%", y: "45%" }
     ];
 
     function renderPuzzle() {
@@ -1000,8 +1003,14 @@
     }
     renderPuzzle();
 
+    // OTOMATİK BAŞLAYAN TAM EKRAN SPOTIFY
     function launchSpotifyFullscreen() {
       const overlay = document.getElementById('spotifyFullscreen');
+      const wrapper = document.getElementById('spotifyEmbedWrapper');
+      
+      // Otomatik çalması için iframe anında autoplay ile dinamik yüklenir
+      wrapper.innerHTML = `<iframe id="mainSpotifyPlayer" style="border-radius:16px" src="https://open.spotify.com/embed/track/1AlG0sHFDQJP2HdXyQb8bL?utm_source=generator&theme=0&autoplay=1" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`;
+
       overlay.classList.remove('hidden');
       document.body.classList.add('locked-scroll');
 
@@ -1015,7 +1024,7 @@
           timerEl.innerText = `⏳ ${seconds} sn`;
         } else {
           clearInterval(countdown);
-          timerEl.innerText = "✨ Dinledik";
+          timerEl.innerText = "✨ Şarkımız Çalıyor";
           continueBtn.classList.remove('hidden');
         }
       }, 1000);
