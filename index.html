@@ -30,12 +30,17 @@
       padding: 20px 14px 44px;
     }
 
+    body.locked-scroll {
+      overflow: hidden !important;
+      touch-action: none;
+    }
+
     .wrapper { 
       width: 100%; 
-      max-width: 420px; 
+      max-width: 440px; 
       display: flex; 
       flex-direction: column; 
-      gap: 26px; 
+      gap: 24px; 
     }
 
     .lock-wrapper {
@@ -73,7 +78,7 @@
     .subtitle { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 16px; }
     .hidden { display: none !important; }
 
-    /* Yenilenen Sade Kilit Ekranı */
+    /* Kilit Ekranı */
     .equation-box {
       background: #f1ebd8;
       border: 1px dashed #bda78f;
@@ -104,7 +109,7 @@
       box-shadow: 0 4px 12px rgba(139, 74, 71, 0.35);
     }
 
-    /* Çocukluk Fotoğrafları Kartı (Yıldızlı Arka Plan) */
+    /* Çocukluk Fotoğrafları */
     .starry-card {
       background: url('IMG_8956.jpeg') center/cover no-repeat;
       color: #2b221b;
@@ -134,13 +139,13 @@
       100% { transform: translateY(-7px) rotate(3deg); }
     }
 
-    /* Orijinal Dikey Oranlı Kusursuz Puzzle */
+    /* Yüzlere Odaklı Dikey Puzzle */
     .puzzle-grid {
       display: grid; 
       grid-template-columns: repeat(2, 1fr);
       gap: 2px; 
       width: 260px; 
-      height: 340px; 
+      height: 320px; 
       margin: 14px auto;
       border-radius: 14px; 
       overflow: hidden;
@@ -150,30 +155,37 @@
     }
     .tile {
       width: 100%; height: 100%;
-      background-size: 260px 340px; cursor: pointer;
+      background-size: 260px 420px; /* Üst kısımdaki yüzlere odaklama */
+      cursor: pointer;
       transition: transform 0.12s ease;
     }
     .tile.selected { outline: 3px solid var(--accent); transform: scale(0.96); z-index: 2; }
 
-    /* 10 Anı Görseli - TAM AKIŞ & EŞİT HİYERARŞİ */
-    .memories-list { display: flex; flex-direction: column; gap: 22px; margin-top: 10px; }
+    /* 2'Lİ YAN YANA ANILAR LİSTESİ */
+    .memories-grid { 
+      display: grid; 
+      grid-template-columns: repeat(2, 1fr); 
+      gap: 12px; 
+      margin-top: 10px; 
+    }
     .memory-card {
       background: #ffffff; 
       border: 1px solid var(--border-soft); 
-      border-radius: 20px;
+      border-radius: 16px;
       overflow: hidden; 
       text-align: left; 
-      box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
     }
     .memory-card img {
       width: 100%;
-      aspect-ratio: 4 / 5;
+      aspect-ratio: 1 / 1.15;
       object-fit: cover;
       display: block;
     }
-    .memory-card .content { padding: 14px 16px; }
-    .memory-card h4 { font-size: 0.98rem; color: var(--accent); margin-bottom: 4px; font-weight: 600; }
-    .memory-card p { font-size: 0.85rem; color: #555; line-height: 1.45; }
+    .memory-card .content { padding: 10px 10px 12px; }
+    .memory-card h4 { font-size: 0.82rem; color: var(--accent); margin-bottom: 2px; font-weight: 600; line-height: 1.3; }
 
     /* Spiral Mektup Kartı */
     .letter-card {
@@ -194,7 +206,7 @@
       line-height: 1.85; color: #3d352e; font-style: italic;
     }
 
-    /* Sayfaları Çevrilen Defter - BÜYÜK VE EŞİT KAPAKÇIK */
+    /* Sayfaları Çevrilen Defter */
     .notebook-container {
       background: #efe7dc; 
       border-radius: 20px; 
@@ -238,7 +250,75 @@
     .book-nav { display: flex; justify-content: space-between; margin-top: 14px; }
     .book-btn { background: #8d6e63; color: #fff; border: none; padding: 8px 18px; border-radius: 12px; font-size: 0.85rem; cursor: pointer; }
 
-    /* Siyah Footer & Pop-up */
+    /* TAM EKRAN SPOTIFY DENEYİMİ */
+    .spotify-fullscreen {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: radial-gradient(circle at top, #1ed760 0%, #121212 55%, #050505 100%);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 18px;
+      z-index: 99999;
+      animation: fadeIn 0.4s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.97); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .spotify-top-bar {
+      width: 100%;
+      max-width: 420px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .spotify-badge {
+      font-size: 0.82rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      opacity: 0.85;
+      font-weight: 600;
+    }
+    .spotify-timer {
+      background: rgba(255,255,255,0.18);
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+    .spotify-embed-container {
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 16px 36px rgba(0,0,0,0.6);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .spotify-note {
+      font-family: 'Caveat', cursive;
+      font-size: 1.35rem;
+      color: #fef08a;
+      margin-top: 24px;
+      text-align: center;
+    }
+    .spotify-continue-btn {
+      margin-top: 22px;
+      background: #1ed760;
+      color: #000;
+      font-weight: 700;
+      padding: 12px 28px;
+      border-radius: 24px;
+      border: none;
+      font-size: 0.95rem;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(30,215,96,0.4);
+      transition: all 0.2s;
+    }
+
+    /* Siyah Footer */
     .footer-dark {
       background: #141813;
       border: 1px solid rgba(255, 255, 255, 0.08);
@@ -249,54 +329,26 @@
       margin-top: 10px;
       box-shadow: 0 12px 28px rgba(0,0,0,0.4);
     }
-    .footer-title {
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: #fef08a;
-      margin-bottom: 6px;
-    }
-    .footer-note {
-      font-size: 0.8rem;
-      color: #9ca3af;
-      margin-bottom: 16px;
-    }
-    .footer-actions {
-      display: flex;
-      gap: 8px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
+    .footer-title { font-size: 1.05rem; font-weight: 600; color: #fef08a; margin-bottom: 6px; }
+    .footer-note { font-size: 0.8rem; color: #9ca3af; margin-bottom: 16px; }
+    .footer-actions { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
     .footer-btn {
-      background: #242b22;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      color: #f3f4f6;
-      padding: 9px 13px;
-      border-radius: 14px;
-      font-size: 0.78rem;
-      font-weight: 500;
-      cursor: pointer;
+      background: #242b22; border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #f3f4f6; padding: 9px 13px; border-radius: 14px;
+      font-size: 0.78rem; font-weight: 500; cursor: pointer;
     }
 
+    /* Modal */
     .modal-overlay {
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.65);
-      backdrop-filter: blur(4px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      z-index: 999;
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.65); backdrop-filter: blur(4px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 20px; z-index: 999;
     }
     .modal-content {
-      background: #1c221b;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 22px;
-      width: 100%;
-      max-width: 340px;
-      padding: 22px 18px;
-      color: #fff;
-      text-align: center;
+      background: #1c221b; border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 22px; width: 100%; max-width: 340px;
+      padding: 22px 18px; color: #fff; text-align: center;
       box-shadow: 0 16px 36px rgba(0,0,0,0.5);
     }
     .modal-content h3 { font-size: 1.15rem; color: #fef08a; margin-bottom: 10px; font-family: 'Playfair Display', serif; }
@@ -308,7 +360,7 @@
 
 <div class="wrapper">
 
-  <!-- 1. SADELEŞTİRİLMİŞ KİLİT KARTI -->
+  <!-- 1. KİLİT KARTI -->
   <div class="lock-wrapper" id="lockWrapper">
     <div class="card" id="lockCard">
       <div class="tape"></div>
@@ -326,7 +378,7 @@
   <!-- SİTENİN ANA İÇERİĞİ -->
   <div id="mainContent" class="hidden" style="display: flex; flex-direction: column; gap: 26px;">
 
-    <!-- 2. İKİMİZİN FOTOĞRAFLARI & KÜÇÜKLÜKLER (Yıldızlı Kart) -->
+    <!-- 2. ÇOCUKLUK GÖRSELLERİ -->
     <div class="card starry-card">
       <div class="tape"></div>
       <h2>Miniğim ve miniğimin ekürisi 🌸</h2>
@@ -348,7 +400,7 @@
     </div>
 
     <!-- 3. PUZZLE KARTI -->
-    <div class="card">
+    <div class="card" id="puzzleCard">
       <div class="tape"></div>
       <h2>Bizim Parçamız 🧩</h2>
       <p class="subtitle">Parçalara dokunarak yerlerini değiştir ve tamamla!</p>
@@ -356,67 +408,67 @@
       <p id="puzzleSuccess" class="subtitle" style="color: var(--accent); font-weight: 600; margin-top: 8px;"></p>
     </div>
 
-    <!-- 4. SPOTIFY KARTI (Anıl Piyancı - Beraber Büyüdük) -->
-    <div class="card">
+    <!-- 4. SPOTIFY KARTI (ANIL PİYANCI - BERABER BÜYÜDÜK) -->
+    <div class="card" id="spotifyCard">
       <div class="tape"></div>
       <h2>Bizim Şarkımız ♫</h2>
-      <p class="subtitle">Şarkıyı buradan dinleyebilirsin</p>
+      <p class="subtitle">Anıl Piyancı - Beraber Büyüdük</p>
       <div style="border-radius:14px; overflow:hidden;">
-        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/30wM78Y2Vsh3kY6c6lq0G6?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/1AlG0sHFDQJP2HdXyQb8bL?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
       </div>
     </div>
 
-    <!-- 5. 10 ANILIK GÖRSEL VE YAZI LİSTESİ -->
+    <!-- 5. 10 ANILIK GÖRSEL (2'Lİ YAN YANA DÜZEN) -->
     <div class="card">
       <div class="tape"></div>
       <h2>Unutulmaz Anlarımız 📸</h2>
       <p class="subtitle">Her anı dün gibi aklımda...</p>
       
-      <div class="memories-list">
+      <div class="memories-grid">
         <div class="memory-card">
           <img src="IMG_3597.jpeg" alt="öpüşememe sorunsalı">
-          <div class="content"><h4>öpüşememe sorunsalı</h4><p></p></div>
+          <div class="content"><h4>öpüşememe sorunsalı</h4></div>
         </div>
         <div class="memory-card">
           <img src="IMG_3689.jpeg" alt="mezun çift">
-          <div class="content"><h4>mezun çift</h4><p></p></div>
+          <div class="content"><h4>mezun çift</h4></div>
         </div>
         <div class="memory-card">
           <img src="AF9D5DCD-3D40-4F03-A423-5F84BE594329.jpeg" alt="merhaba kula">
-          <div class="content"><h4>merhaba kula</h4><p></p></div>
+          <div class="content"><h4>merhaba kula</h4></div>
         </div>
         <div class="memory-card">
           <img src="IMG_4996.jpeg" alt="sanırım soğuk hava">
-          <div class="content"><h4>sanırım soğuk hava</h4><p></p></div>
+          <div class="content"><h4>sanırım soğuk hava</h4></div>
         </div>
         <div class="memory-card">
           <img src="IMG_5141.jpeg" alt="luck sahipleri">
-          <div class="content"><h4>luck sahipleri</h4><p></p></div>
+          <div class="content"><h4>luck sahipleri</h4></div>
         </div>
         <div class="memory-card">
           <img src="IMG_1915.jpeg" alt="güzel kombin nalet gün">
-          <div class="content"><h4>güzel kombin nalet gün</h4><p></p></div>
+          <div class="content"><h4>güzel kombin nalet gün</h4></div>
         </div>
         <div class="memory-card">
           <img src="F3062DF2-F801-44F4-BC79-D5C61DCDD61F.jpeg" alt="YA AŞIĞIM">
-          <div class="content"><h4>YA AŞIĞIM</h4><p></p></div>
+          <div class="content"><h4>YA AŞIĞIM</h4></div>
         </div>
         <div class="memory-card">
           <img src="IMG_6795.jpeg" alt="benim yakışıklı futbolcum">
-          <div class="content"><h4>benim yakışıklı futbolcum (sakatlanmasan iyiydi)</h4><p></p></div>
+          <div class="content"><h4>benim yakışıklı futbolcum</h4></div>
         </div>
         <div class="memory-card">
           <img src="IMG_3083.jpeg" alt="hop babalar kampüs">
-          <div class="content"><h4>hop babalar kampüs</h4><p></p></div>
+          <div class="content"><h4>hop babalar kampüs</h4></div>
         </div>
         <div class="memory-card">
           <img src="IMG_7603.jpeg" alt="megatron misali">
-          <div class="content"><h4>megatron misali</h4><p></p></div>
+          <div class="content"><h4>megatron misali</h4></div>
         </div>
       </div>
     </div>
 
-    <!-- 6. SPİRAL DEFTER: AŞKIMIZA MEKTUP -->
+    <!-- 6. SPİRAL MEKTUP -->
     <div class="card letter-card">
       <div class="spiral-rings">
         <div class="ring"></div><div class="ring"></div><div class="ring"></div>
@@ -431,7 +483,7 @@
       </div>
     </div>
 
-    <!-- 7. SAYFALARI ÇEVRİLEN DEFTER: KOMİK ANILAR (BÜYÜK KAPAK) -->
+    <!-- 7. SAYFALARI ÇEVRİLEN DEFTER -->
     <div class="card">
       <div class="tape"></div>
       <h2>Komik Anılar Defteri 📖</h2>
@@ -471,7 +523,7 @@
       </div>
     </div>
 
-    <!-- 8. SİYAH FOOTER & AÇILIR PENCERELER -->
+    <!-- 8. FOOTER -->
     <footer class="footer-dark">
       <div class="footer-title">iyiki dogdun pasam 😙</div>
       <div class="footer-note">Sana özel küçük sürpriz pencereler:</div>
@@ -486,7 +538,25 @@
 
 </div>
 
-<!-- Pop-up (Modal) -->
+<!-- PUZZLE TAMAMLANINCA AÇILAN 15 SANİYELİK KİLİTLİ TAM EKRAN SPOTIFY EKRANI -->
+<div id="spotifyFullscreen" class="spotify-fullscreen hidden">
+  <div class="spotify-top-bar">
+    <span class="spotify-badge">✨ Özel Şarkımız Çalıyor</span>
+    <span class="spotify-timer" id="spotifyTimer">⏳ 15 sn</span>
+  </div>
+  
+  <div class="spotify-embed-container">
+    <iframe style="border-radius:16px" src="https://open.spotify.com/embed/track/1AlG0sHFDQJP2HdXyQb8bL?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+  </div>
+
+  <p class="spotify-note">"Biz beraber büyüdük..." 💚</p>
+
+  <button id="spotifyContinueBtn" class="spotify-continue-btn hidden" onclick="closeSpotifyOverlay()">
+    Siteye Devam Et ♡
+  </button>
+</div>
+
+<!-- Modal -->
 <div id="modalOverlay" class="modal-overlay hidden" onclick="closeModalOnBg(event)">
   <div class="modal-content">
     <h3 id="modalTitle">Başlık</h3>
@@ -507,17 +577,18 @@
     }
   }
 
-  // Puzzle Mantığı - 260x340 Doğal Dikey Oran
+  // Puzzle Mantığı (Yüzlere odaklanmış kadraj)
   const currentPuzzleImg = "af2888eb-7c2d-4fab-918f-8e5414292192.jpeg"; 
   let pieces = [0, 1, 2, 3];
   let shuffled = [2, 0, 3, 1];
   let selectedIdx = null;
 
+  // Üst kadraj için dikey konumlandırma
   const positions = [
     { x: "0%", y: "0%" },
     { x: "100%", y: "0%" },
-    { x: "0%", y: "100%" },
-    { x: "100%", y: "100%" }
+    { x: "0%", y: "45%" },
+    { x: "100%", y: "45%" }
   ];
 
   function renderPuzzle() {
@@ -546,12 +617,42 @@
     renderPuzzle();
   }
 
+  let puzzleAlreadyWon = false;
   function checkWin() {
-    if (shuffled.every((val, i) => val === pieces[i])) {
+    if (!puzzleAlreadyWon && shuffled.every((val, i) => val === pieces[i])) {
+      puzzleAlreadyWon = true;
       document.getElementById('puzzleSuccess').innerText = "Tebrikler! Bütün parçalar yerine oturdu ♡";
+      setTimeout(launchSpotifyFullscreen, 500);
     }
   }
   renderPuzzle();
+
+  // 15 Saniyelik Kilitli Tam Ekran Spotify Deneyimi
+  function launchSpotifyFullscreen() {
+    const overlay = document.getElementById('spotifyFullscreen');
+    overlay.classList.remove('hidden');
+    document.body.classList.add('locked-scroll');
+
+    let seconds = 15;
+    const timerEl = document.getElementById('spotifyTimer');
+    const continueBtn = document.getElementById('spotifyContinueBtn');
+
+    const countdown = setInterval(() => {
+      seconds--;
+      if (seconds > 0) {
+        timerEl.innerText = `⏳ ${seconds} sn`;
+      } else {
+        clearInterval(countdown);
+        timerEl.innerText = "✨ Dinledik";
+        continueBtn.classList.remove('hidden');
+      }
+    }, 1000);
+  }
+
+  function closeSpotifyOverlay() {
+    document.getElementById('spotifyFullscreen').classList.add('hidden');
+    document.body.classList.remove('locked-scroll');
+  }
 
   // Defter Fonksiyonları
   let currentPage = 1;
