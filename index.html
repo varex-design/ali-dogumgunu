@@ -87,7 +87,7 @@
 
     /* Yıldızlı Arka Plan & Sallanan Polaroidler */
     .starry-card {
-      background: linear-gradient(rgba(15, 23, 42, 0.4), rgba(15, 23, 42, 0.55)), url('IMG_8956.jpeg') center/cover;
+      background: linear-gradient(rgba(15, 23, 0.4), rgba(15, 23, 0.55)), url('IMG_8956.jpeg') center/cover;
       color: #f1f5f9;
     }
     .starry-card h2 { color: #fef08a; }
@@ -97,11 +97,11 @@
     }
     .polaroid {
       background: #fff; padding: 7px 7px 14px; border-radius: 8px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.3); width: 135px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.3); width: 140px;
       color: #333; animation: floatAnim 3.5s ease-in-out infinite alternate;
     }
     .polaroid.p2 { animation-delay: -1.7s; }
-    .polaroid img { width: 100%; height: 125px; object-fit: cover; border-radius: 4px; }
+    .polaroid img { width: 100%; height: 135px; object-fit: contain; background: #f8f6f0; border-radius: 4px; }
     .polaroid span { font-family: 'Caveat', cursive; font-size: 1.1rem; display: block; margin-top: 6px; }
     @keyframes floatAnim {
       0% { transform: translateY(0) rotate(-3deg); }
@@ -111,27 +111,39 @@
     /* 2x2 Puzzle */
     .puzzle-grid {
       display: grid; grid-template-columns: repeat(2, 1fr);
-      gap: 5px; width: 230px; height: 230px; margin: 12px auto;
+      gap: 5px; width: 240px; height: 240px; margin: 12px auto;
       border-radius: 12px; overflow: hidden;
       border: 3px solid #dfd7cc; background: #ece5dc;
     }
     .tile {
       width: 100%; height: 100%;
-      background-size: 230px 230px; cursor: pointer;
+      background-size: 240px 240px; cursor: pointer;
       transition: transform 0.15s ease;
     }
     .tile.selected { outline: 3px solid var(--accent); transform: scale(0.96); }
 
-    /* 10 Anı Görseli */
+    /* 10 Anı Görseli - TAM GÖRÜNÜM AYARI */
     .memories-list { display: flex; flex-direction: column; gap: 18px; margin-top: 10px; }
     .memory-card {
       background: #fdfdfd; border: 1px solid #eee; border-radius: 16px;
       overflow: hidden; text-align: left; box-shadow: 0 4px 10px rgba(0,0,0,0.04);
     }
-    .memory-card img { width: 100%; height: 210px; object-fit: cover; }
-    .memory-card .content { padding: 12px 14px; }
-    .memory-card h4 { font-size: 0.95rem; color: var(--accent); margin-bottom: 4px; font-weight: 600; }
-    .memory-card p { font-size: 0.85rem; color: #555; line-height: 1.45; min-height: 14px; }
+    .memory-img-box {
+      width: 100%;
+      background: #1e1e1e;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .memory-card img {
+      width: 100%;
+      max-height: 480px;
+      object-fit: contain;
+      display: block;
+    }
+    .memory-card .content { padding: 14px 16px; }
+    .memory-card h4 { font-size: 0.98rem; color: var(--accent); margin-bottom: 4px; font-weight: 600; }
+    .memory-card p { font-size: 0.85rem; color: #555; line-height: 1.45; }
 
     /* Spiral Mektup Kartı */
     .letter-card {
@@ -163,12 +175,22 @@
     }
     .notebook-pages {
       display: none; background: #fff; border-radius: 12px;
-      padding: 16px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); min-height: 250px;
+      padding: 16px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
-    .book-page img { width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 8px; }
-    .book-page p { color: #444; font-family: 'Caveat', cursive; font-size: 1.15rem; }
-    .book-nav { display: flex; justify-content: space-between; margin-top: 12px; }
-    .book-btn { background: #8d6e63; color: #fff; border: none; padding: 6px 14px; border-radius: 12px; font-size: 0.8rem; cursor: pointer; }
+    .book-img-box {
+      width: 100%;
+      background: #222;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .book-page img { width: 100%; max-height: 380px; object-fit: contain; display: block; }
+    .book-page p { color: #444; font-family: 'Caveat', cursive; font-size: 1.2rem; margin-top: 6px; }
+    .book-nav { display: flex; justify-content: space-between; margin-top: 14px; }
+    .book-btn { background: #8d6e63; color: #fff; border: none; padding: 7px 16px; border-radius: 12px; font-size: 0.85rem; cursor: pointer; }
 
     /* Siyah Footer & Pop-up */
     .footer-dark {
@@ -303,43 +325,43 @@
       
       <div class="memories-list">
         <div class="memory-card">
-          <img src="IMG_3597.jpeg" alt="öpüşememe sorunsalı">
+          <div class="memory-img-box"><img src="IMG_3597.jpeg" alt="öpüşememe sorunsalı"></div>
           <div class="content"><h4>öpüşememe sorunsalı</h4><p></p></div>
         </div>
         <div class="memory-card">
-          <img src="IMG_3689.jpeg" alt="mezun çift">
+          <div class="memory-img-box"><img src="IMG_3689.jpeg" alt="mezun çift"></div>
           <div class="content"><h4>mezun çift</h4><p></p></div>
         </div>
         <div class="memory-card">
-          <img src="IMG_4996.jpeg" alt="merhaba kula">
+          <div class="memory-img-box"><img src="AF9D5DCD-3D40-4F03-A423-5F84BE594329.jpeg" alt="merhaba kula"></div>
           <div class="content"><h4>merhaba kula</h4><p></p></div>
         </div>
         <div class="memory-card">
-          <img src="IMG_5141.jpeg" alt="sanırım soğuk hava">
+          <div class="memory-img-box"><img src="IMG_4996.jpeg" alt="sanırım soğuk hava"></div>
           <div class="content"><h4>sanırım soğuk hava</h4><p></p></div>
         </div>
         <div class="memory-card">
-          <img src="IMG_1915.jpeg" alt="luck sahipleri">
+          <div class="memory-img-box"><img src="IMG_5141.jpeg" alt="luck sahipleri"></div>
           <div class="content"><h4>luck sahipleri</h4><p></p></div>
         </div>
         <div class="memory-card">
-          <img src="IMG_6795.jpeg" alt="güzel kombin nalet gün">
+          <div class="memory-img-box"><img src="IMG_1915.jpeg" alt="güzel kombin nalet gün"></div>
           <div class="content"><h4>güzel kombin nalet gün</h4><p></p></div>
         </div>
         <div class="memory-card">
-          <img src="IMG_3083.jpeg" alt="YA AŞIĞIM">
+          <div class="memory-img-box"><img src="F3062DF2-F801-44F4-BC79-D5C61DCDD61F.jpeg" alt="YA AŞIĞIM"></div>
           <div class="content"><h4>YA AŞIĞIM</h4><p></p></div>
         </div>
         <div class="memory-card">
-          <img src="IMG_7603.jpeg" alt="benim yakışıklı futbolcum">
+          <div class="memory-img-box"><img src="IMG_6795.jpeg" alt="benim yakışıklı futbolcum"></div>
           <div class="content"><h4>benim yakışıklı futbolcum (sakatlanmasan iyiydi)</h4><p></p></div>
         </div>
         <div class="memory-card">
-          <img src="IMG_4714.jpeg" alt="hop babalar kampüs">
+          <div class="memory-img-box"><img src="IMG_3083.jpeg" alt="hop babalar kampüs"></div>
           <div class="content"><h4>hop babalar kampüs</h4><p></p></div>
         </div>
         <div class="memory-card">
-          <img src="IMG_8366.jpeg" alt="megatron misali">
+          <div class="memory-img-box"><img src="IMG_7603.jpeg" alt="megatron misali"></div>
           <div class="content"><h4>megatron misali</h4><p></p></div>
         </div>
       </div>
@@ -374,19 +396,19 @@
 
         <div class="notebook-pages" id="bookPages">
           <div class="book-page" id="page1">
-            <img src="IMG_3962.jpeg" alt="aşığım şu gülüşe">
+            <div class="book-img-box"><img src="IMG_4714.jpeg" alt="aşığım şu gülüşee"></div>
             <p>aşığım şu gülüşee</p>
           </div>
           <div class="book-page hidden" id="page2">
-            <img src="IMG_3885.jpeg" alt="uykucular">
+            <div class="book-img-box"><img src="IMG_8366.jpeg" alt="uykucular"></div>
             <p>uykucular</p>
           </div>
           <div class="book-page hidden" id="page3">
-            <img src="af2888eb-7c2d-4fab-918f-8e5414292192.jpeg" alt="AAAA">
+            <div class="book-img-box"><img src="IMG_3962.jpeg" alt="AAAA"></div>
             <p>AAAA</p>
           </div>
           <div class="book-page hidden" id="page4">
-            <img src="F3062DF2-F801-44F4-BC79-D5C61DCDD744.jpeg" alt="karpuz kötüydü">
+            <div class="book-img-box"><img src="IMG_3885.jpeg" alt="karpuz kötüydü kocam haklı"></div>
             <p>karpuz kötüydü kocam haklı</p>
           </div>
 
@@ -435,8 +457,8 @@
     }
   }
 
-  // Puzzle Mantığı (Depodaki puzzle görseli bağlandı)
-  const currentPuzzleImg = "AF9D5DCD-3D40-4F03-A423-5F84BE598918.jpeg"; 
+  // Puzzle Mantığı
+  const currentPuzzleImg = "af2888eb-7c2d-4fab-918f-8e5414292192.jpeg"; 
   let pieces = [0, 1, 2, 3];
   let shuffled = [2, 0, 3, 1];
   let selectedIdx = null;
