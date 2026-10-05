@@ -236,8 +236,7 @@
       100% { transform: translateX(-50%) scale(1.15) rotate(2deg); }
     }
     @keyframes riseSmoke {
-      0% { opacity: 1; transform: translate(-50%, 0) scale(1); }
-      100% { opacity: 0; transform: translate(-50%, -30px) scale(2.5); }
+      0% { opacity: 1; transform: translate(-50%, -30px) scale(2.5); }
     }
 
     .counter-grid {
@@ -345,7 +344,7 @@
     }
     .tile {
       width: 100%; height: 100%;
-      background-size: 270px 480px; /* Üstteki yüzlere odaklama */
+      background-size: 270px 480px;
       cursor: pointer;
       transition: transform 0.12s ease;
     }
@@ -376,12 +375,13 @@
     .memory-card .content { padding: 10px 10px 12px; }
     .memory-card h4 { font-size: 0.82rem; color: var(--accent); margin-bottom: 2px; font-weight: 600; line-height: 1.3; }
 
+    /* YENİLENMİŞ SPİRAL MEKTUP */
     .letter-card {
       background: #fdfaf2;
       border-left: 28px solid #ded2be;
       position: relative;
       text-align: left;
-      padding: 24px 20px 24px 24px;
+      padding: 24px 18px 26px 22px;
       box-shadow: inset 0 0 15px rgba(0,0,0,0.02);
     }
     .spiral-rings {
@@ -390,8 +390,18 @@
     }
     .ring { width: 18px; height: 9px; background: #555; border-radius: 5px; }
     .letter-body {
-      font-family: 'Playfair Display', serif; font-size: 0.94rem;
-      line-height: 1.85; color: #3d352e; font-style: italic;
+      font-family: 'Playfair Display', serif; 
+      font-size: 0.94rem;
+      line-height: 1.95; 
+      color: #3d352e; 
+      font-style: italic;
+    }
+    .letter-body p {
+      margin-bottom: 14px;
+      text-indent: 14px;
+    }
+    .letter-body p:first-of-type {
+      text-indent: 0;
     }
 
     .notebook-container {
@@ -720,7 +730,7 @@
         </div>
       </div>
 
-      <!-- 10. 10 SAYFALIK DEFTER (Görsel Hatasız) -->
+      <!-- 10. 10 SAYFALIK DEFTER -->
       <div class="card">
         <div class="tape"></div>
         <h2>Komik & Özel Anılar Defteri 📖</h2>
@@ -784,7 +794,7 @@
         </div>
       </div>
 
-      <!-- 11. DEFTERDEN HEMEN SONRAKİ ÖZEL ANILAR (Hatasız & Güvenli Görsel Bağlantıları) -->
+      <!-- 11. DEFTERDEN HEMEN SONRAKİ ÖZEL ANILAR -->
       <div class="card">
         <div class="tape"></div>
         <h2>Özel Karelerimiz ✨</h2>
@@ -834,18 +844,32 @@
         </div>
       </div>
 
-      <!-- 12. SPİRAL MEKTUP -->
+      <!-- 12. ÖZEL VE UZUN OSMANLICA TERİMLİ SPİRAL MEKTUP -->
       <div class="card letter-card">
         <div class="spiral-rings">
           <div class="ring"></div><div class="ring"></div><div class="ring"></div>
           <div class="ring"></div><div class="ring"></div><div class="ring"></div>
           <div class="ring"></div><div class="ring"></div><div class="ring"></div>
         </div>
-        <h2 style="font-size: 1.3rem; margin-bottom: 12px; font-family: 'Playfair Display', serif;">Aşkımıza Mektup 💌</h2>
+        <h2 style="font-size: 1.3rem; margin-bottom: 14px; font-family: 'Playfair Display', serif;">Aşkımıza Mektup 💌</h2>
         <div class="letter-body">
-          Ali'm, sarışınım...<br><br>
-          Hayatıma girdiğin ilk andan beri bana kattığın neşeyi, içimdeki o çocuksu huzuru kelimelerle anlatmak yetersiz kalır. Seninle geçen her gün, birlikte kurduğumuz her hayal benim en kıymetli sığınağım oldu.<br><br>
-          İyi ki doğdun, iyi ki yollarımız kesişti ve iyi ki benim oldun. Birlikte nice upuzun, kahkahalı ve sevgi dolu yaşlara!
+          <p><strong>Gönlümün Sultânı, Rûhumun Zîyneti, Nûr-ı Dîdem Ali’m...</strong></p>
+          
+          <p>Kelâmın acze düştüğü, lügatlerin muhabbetimi beyâna kifâyetsiz kaldığı şu kutlu demde, kalbimin en mahrem köşesinden kopup gelen hissiyâtımı zât-ı âlinize arz eylemek boynumun borcu, cânımın lezzetidir.</p>
+          
+          <p>Seni tanıdığım gün, tâlihimin en parlak yıldızı ufkumda tulû’ eyledi. Sen bu virâneye kadem bastığından beridir ömrüm, evvelce bilmediği bir bahârın şevkiyle tezyîn oldu. Yüzündeki o zerrîn tebessüm, karanlık gecelerime meh-tâb, gamla mülhem anlarıma tiryâk gibidir. Cenâb-ı Hakk’a her seher hamd ü senâlar olsun ki; ervâh-ı ezelde kaderimi kaderine, cânımı cânına rabteylemiş.</p>
+          
+          <p>Sen benim hem bu cihandaki sığınağım, melce-i kalbim, hem de dâreyn saâdetimsin. Sarışınım, zülf-i yârim... Çehrene her nazar kıldığımda sîneme bir inşirâh yayılır, sanki cümle cihanın velvelesi sükûta erer de yalnızca senin varlığının nâmeleri akseder. Biz seninle sâdece bir ömrü değil, mâzinin en masum demlerinden bugüne uzanan bir ahdi paylaştık; seninle beraber büyümek, aynı nefeste demlenmek bu dünyada nâil olduğum en muazzam devlettir.</p>
+          
+          <p>Gözlerin ki, dîdelerimin nûrudur; her bakışında bana dünyâyı unutturan, beni benden alıp senin ummânına gark eden bir tılsım taşır. Seninle geçen her lahza, ömrümün en kıymetli hazînesi; seninle kurulan her hayâl, cennet bahçelerinden bir köşedir. Yanında iken zamanın zevâlini unuttuğum, fırkatinde ise saniyeleri asır bildiğim yegâne pâdişâhımsın.</p>
+          
+          <p>Yeni yaşında ve birlikteliğimizin mühürlendiği her mukaddes senede dilerim ki; tebessümün vechinden, neş’en sînenizden, muhabbetin ise şu bîçâre kalbimden aslâ zâil olmasın. Rabbim hüsnünü kem gözlerden hıfzetsin, sıhhat ve âfiyetini dâim, ömrünü bereketli kılsın. Başın göğe ersin, lâkin elin benim elimden hiç ayrılmasın.</p>
+          
+          <p>İyi ki doğdun, iyi ki benim mukadderâtım, şemsim ve cânânım oldun paşam.</p>
+          
+          <p style="text-align: right; margin-top: 16px; font-weight: 600;">
+            Tâ haşre dek aşkınla müptelâ,<br>bende-i muhabbetin... ♡
+          </p>
         </div>
       </div>
 
@@ -870,9 +894,7 @@
       <span class="spotify-timer" id="spotifyTimer">⏳ 15 sn</span>
     </div>
     
-    <div class="spotify-embed-container" id="spotifyEmbedWrapper">
-      <!-- Tam Ekran Otomatik Başlatma Parametreli Embed -->
-    </div>
+    <div class="spotify-embed-container" id="spotifyEmbedWrapper"></div>
 
     <p class="spotify-note">"Biz beraber büyüdük..." 💚</p>
 
@@ -954,13 +976,12 @@
       }
     }
 
-    // 3x3 YÜZLERE ODAKLI VE ELSİZ PUZZLE MANTIĞI
+    // 3x3 YÜZLERE ODAKLI PUZZLE
     const currentPuzzleImg = "af2888eb-7c2d-4fab-918f-8e5414292192.jpeg"; 
     let pieces = [0, 1, 2, 3, 4, 5, 6, 7, 8];
     let shuffled = [3, 0, 7, 1, 8, 2, 5, 4, 6];
     let selectedIdx = null;
 
-    // 3x3 Koordinatlar (Yüzlere ve kep kısmına tam hizalı)
     const positions = [
       { x: "0%", y: "0%" },   { x: "50%", y: "0%" },   { x: "100%", y: "0%" },
       { x: "0%", y: "25%" },  { x: "50%", y: "25%" },  { x: "100%", y: "25%" },
@@ -1003,12 +1024,11 @@
     }
     renderPuzzle();
 
-    // OTOMATİK BAŞLAYAN TAM EKRAN SPOTIFY
+    // OTOMATİK BAŞLATMALI TAM EKRAN SPOTIFY
     function launchSpotifyFullscreen() {
       const overlay = document.getElementById('spotifyFullscreen');
       const wrapper = document.getElementById('spotifyEmbedWrapper');
       
-      // Otomatik çalması için iframe anında autoplay ile dinamik yüklenir
       wrapper.innerHTML = `<iframe id="mainSpotifyPlayer" style="border-radius:16px" src="https://open.spotify.com/embed/track/1AlG0sHFDQJP2HdXyQb8bL?utm_source=generator&theme=0&autoplay=1" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`;
 
       overlay.classList.remove('hidden');
