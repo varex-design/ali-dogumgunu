@@ -4,18 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sarışınım İyi Ki ✨</title>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Playfair+Display:ital,wght@0,600;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Playfair+Display:ital,wght@0,600;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #1f251d;
       --card-bg: #faf7f2;
       --accent: #8b4a47;
+      --accent-pink: #f472b6;
       --text-main: #2b2521;
       --text-muted: #6e655f;
       --tape: rgba(224, 210, 188, 0.88);
       --border-soft: rgba(0, 0, 0, 0.06);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     
     body {
       background-color: var(--bg);
@@ -24,10 +26,10 @@
       font-family: 'Poppins', sans-serif;
       color: var(--text-main);
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
       min-height: 100vh;
-      padding: 20px 14px 44px;
+      overflow-x: hidden;
     }
 
     body.locked-scroll {
@@ -35,19 +37,14 @@
       touch-action: none;
     }
 
-    .wrapper { 
-      width: 100%; 
-      max-width: 440px; 
-      display: flex; 
-      flex-direction: column; 
-      gap: 24px; 
-    }
-
     .lock-wrapper {
-      min-height: 85vh;
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
+      padding: 16px;
+      width: 100%;
+      max-width: 420px;
     }
 
     .card {
@@ -78,7 +75,6 @@
     .subtitle { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 16px; }
     .hidden { display: none !important; }
 
-    /* Kilit Ekranı */
     .equation-box {
       background: #f1ebd8;
       border: 1px dashed #bda78f;
@@ -91,10 +87,7 @@
       display: block;
       letter-spacing: 1px;
     }
-    .equation-box sub {
-      font-size: 0.9rem;
-      font-family: 'Poppins', sans-serif;
-    }
+    .equation-box sub { font-size: 0.9rem; font-family: 'Poppins', sans-serif; }
     .lock-input {
       width: 100%; padding: 13px; border-radius: 14px;
       border: 1.5px solid #d5cbbf; background: #fff;
@@ -109,7 +102,209 @@
       box-shadow: 0 4px 12px rgba(139, 74, 71, 0.35);
     }
 
-    /* Çocukluk Fotoğrafları */
+    .hero-pink {
+      width: 100vw;
+      min-height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.45)), url('IMG_8923.jpeg') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px;
+      color: #fff;
+      position: relative;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.3rem;
+      color: #fff;
+      text-shadow: 0 4px 18px rgba(0,0,0,0.6);
+      margin-bottom: 12px;
+      animation: floatHero 3s ease-in-out infinite alternate;
+    }
+    .hero-sub {
+      font-family: 'Caveat', cursive;
+      font-size: 1.5rem;
+      color: #fed7aa;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+      margin-bottom: 30px;
+    }
+    .scroll-hint {
+      position: absolute;
+      bottom: 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      color: #fff;
+      opacity: 0.85;
+      text-decoration: none;
+      animation: bounce 1.8s infinite;
+    }
+    @keyframes floatHero {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-8px); }
+    }
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-8px); }
+      60% { transform: translateY(-4px); }
+    }
+
+    .wrapper { 
+      width: 100%; 
+      max-width: 440px; 
+      display: flex; 
+      flex-direction: column; 
+      gap: 26px; 
+      padding: 24px 14px 44px;
+    }
+
+    .cake-stage {
+      position: relative;
+      width: 250px;
+      height: 240px;
+      margin: 10px auto 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+    }
+    .cat-wrapper {
+      position: absolute;
+      top: 10px;
+      width: 120px;
+      height: 120px;
+      z-index: 2;
+      animation: catPeek 3s ease-in-out infinite alternate;
+    }
+    @keyframes catPeek {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-6px); }
+    }
+    .cake-base {
+      width: 200px;
+      height: 90px;
+      background: linear-gradient(180deg, #ffc0d3 0%, #f472b6 100%);
+      border-radius: 45px / 20px;
+      box-shadow: 0 10px 0 #db2777, 0 16px 20px rgba(0,0,0,0.15);
+      position: relative;
+      z-index: 3;
+    }
+    .cake-frosting {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 35px;
+      background: #fff;
+      border-radius: 45px / 20px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.06);
+    }
+    .candle {
+      position: absolute;
+      top: 15px;
+      right: 48px;
+      width: 10px;
+      height: 38px;
+      background: repeating-linear-gradient(45deg, #fef08a, #fef08a 6px, #f59e0b 6px, #f59e0b 12px);
+      border-radius: 4px;
+      z-index: 4;
+      cursor: pointer;
+    }
+    .flame {
+      position: absolute;
+      top: -16px; left: 50%;
+      transform: translateX(-50%);
+      width: 14px; height: 18px;
+      background: radial-gradient(circle, #fef08a 20%, #f97316 70%, transparent 100%);
+      border-radius: 50% 50% 20% 20%;
+      animation: flicker 0.25s infinite alternate;
+      cursor: pointer;
+    }
+    .smoke {
+      position: absolute;
+      top: -24px; left: 50%;
+      transform: translateX(-50%);
+      width: 8px; height: 16px;
+      background: rgba(180, 180, 180, 0.7);
+      border-radius: 50%;
+      filter: blur(2px);
+      animation: riseSmoke 1.5s ease-out forwards;
+    }
+    @keyframes flicker {
+      0% { transform: translateX(-50%) scale(1) rotate(-2deg); }
+      100% { transform: translateX(-50%) scale(1.15) rotate(2deg); }
+    }
+    @keyframes riseSmoke {
+      0% { opacity: 1; transform: translate(-50%, -30px) scale(2.5); }
+    }
+
+    .counter-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin: 12px 0 6px;
+    }
+    .counter-item {
+      background: #f4ede4;
+      border: 1px solid #e2d7c8;
+      border-radius: 14px;
+      padding: 10px 4px;
+    }
+    .counter-num {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--accent);
+      display: block;
+      font-family: 'Playfair Display', serif;
+    }
+    .counter-label {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .coupons-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .coupon-card {
+      background: #fff;
+      border: 2px dashed #f472b6;
+      border-radius: 16px;
+      padding: 14px 16px;
+      text-align: left;
+      position: relative;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(244, 114, 182, 0.12);
+      transition: all 0.2s ease;
+      overflow: hidden;
+    }
+    .coupon-card:active { transform: scale(0.98); }
+    .coupon-card.used {
+      opacity: 0.75;
+      border-color: #cbd5e1;
+      background: #f8fafc;
+    }
+    .coupon-title { font-size: 0.95rem; font-weight: 600; color: #db2777; margin-bottom: 2px; }
+    .coupon-desc { font-size: 0.8rem; color: #64748b; }
+    .coupon-stamp {
+      position: absolute;
+      right: 12px; top: 50%;
+      transform: translateY(-50%) rotate(-12deg);
+      border: 2px solid #ef4444;
+      color: #ef4444;
+      padding: 4px 10px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      border-radius: 8px;
+      text-transform: uppercase;
+    }
+
     .starry-card {
       background: url('IMG_8956.jpeg') center/cover no-repeat;
       color: #2b221b;
@@ -126,20 +321,13 @@
       color: #333; animation: floatAnim 3.5s ease-in-out infinite alternate;
     }
     .polaroid.p2 { animation-delay: -1.7s; }
-    .polaroid img { 
-      width: 100%; 
-      height: 140px; 
-      object-fit: cover; 
-      border-radius: 4px; 
-      display: block; 
-    }
+    .polaroid img { width: 100%; height: 140px; object-fit: cover; border-radius: 4px; display: block; }
     .polaroid span { font-family: 'Caveat', cursive; font-size: 1.08rem; display: block; margin-top: 6px; }
     @keyframes floatAnim {
       0% { transform: translateY(0) rotate(-3deg); }
       100% { transform: translateY(-7px) rotate(3deg); }
     }
 
-    /* Yüzlere Odaklı Dikey Puzzle */
     .puzzle-grid {
       display: grid; 
       grid-template-columns: repeat(2, 1fr);
@@ -155,13 +343,12 @@
     }
     .tile {
       width: 100%; height: 100%;
-      background-size: 260px 420px; /* Üst kısımdaki yüzlere odaklama */
+      background-size: 260px 420px;
       cursor: pointer;
       transition: transform 0.12s ease;
     }
     .tile.selected { outline: 3px solid var(--accent); transform: scale(0.96); z-index: 2; }
 
-    /* 2'Lİ YAN YANA ANILAR LİSTESİ */
     .memories-grid { 
       display: grid; 
       grid-template-columns: repeat(2, 1fr); 
@@ -187,7 +374,6 @@
     .memory-card .content { padding: 10px 10px 12px; }
     .memory-card h4 { font-size: 0.82rem; color: var(--accent); margin-bottom: 2px; font-weight: 600; line-height: 1.3; }
 
-    /* Spiral Mektup Kartı */
     .letter-card {
       background: #fdfaf2;
       border-left: 28px solid #ded2be;
@@ -206,11 +392,10 @@
       line-height: 1.85; color: #3d352e; font-style: italic;
     }
 
-    /* Sayfaları Çevrilen Defter */
     .notebook-container {
       background: #efe7dc; 
       border-radius: 20px; 
-      padding: 12px;
+      padding: 14px;
       box-shadow: inset 0 0 10px rgba(0,0,0,0.06); 
       margin-top: 10px;
     }
@@ -218,6 +403,7 @@
       background: linear-gradient(145deg, #66433a, #4a2f28);
       color: #fff; 
       width: 100%;
+      min-height: 320px;
       aspect-ratio: 4 / 5;
       border-radius: 16px; 
       cursor: pointer; 
@@ -235,7 +421,7 @@
       display: none; 
       background: #fff; 
       border-radius: 16px;
-      padding: 14px; 
+      padding: 16px; 
       box-shadow: 0 6px 14px rgba(0,0,0,0.08);
     }
     .book-page img { 
@@ -246,11 +432,10 @@
       display: block; 
       margin-bottom: 10px; 
     }
-    .book-page p { color: #444; font-family: 'Caveat', cursive; font-size: 1.25rem; margin-top: 4px; }
+    .book-page p { color: #444; font-family: 'Caveat', cursive; font-size: 1.3rem; margin-top: 4px; }
     .book-nav { display: flex; justify-content: space-between; margin-top: 14px; }
     .book-btn { background: #8d6e63; color: #fff; border: none; padding: 8px 18px; border-radius: 12px; font-size: 0.85rem; cursor: pointer; }
 
-    /* TAM EKRAN SPOTIFY DENEYİMİ */
     .spotify-fullscreen {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
@@ -276,49 +461,20 @@
       align-items: center;
       margin-bottom: 20px;
     }
-    .spotify-badge {
-      font-size: 0.82rem;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      opacity: 0.85;
-      font-weight: 600;
-    }
-    .spotify-timer {
-      background: rgba(255,255,255,0.18);
-      padding: 5px 12px;
-      border-radius: 20px;
-      font-size: 0.78rem;
-      font-weight: 600;
-    }
+    .spotify-badge { font-size: 0.82rem; letter-spacing: 1px; text-transform: uppercase; opacity: 0.85; font-weight: 600; }
+    .spotify-timer { background: rgba(255,255,255,0.18); padding: 5px 12px; border-radius: 20px; font-size: 0.78rem; font-weight: 600; }
     .spotify-embed-container {
-      width: 100%;
-      max-width: 420px;
+      width: 100%; max-width: 420px;
       box-shadow: 0 16px 36px rgba(0,0,0,0.6);
-      border-radius: 16px;
-      overflow: hidden;
+      border-radius: 16px; overflow: hidden;
     }
-    .spotify-note {
-      font-family: 'Caveat', cursive;
-      font-size: 1.35rem;
-      color: #fef08a;
-      margin-top: 24px;
-      text-align: center;
-    }
+    .spotify-note { font-family: 'Caveat', cursive; font-size: 1.35rem; color: #fef08a; margin-top: 24px; text-align: center; }
     .spotify-continue-btn {
-      margin-top: 22px;
-      background: #1ed760;
-      color: #000;
-      font-weight: 700;
-      padding: 12px 28px;
-      border-radius: 24px;
-      border: none;
-      font-size: 0.95rem;
-      cursor: pointer;
-      box-shadow: 0 6px 20px rgba(30,215,96,0.4);
-      transition: all 0.2s;
+      margin-top: 22px; background: #1ed760; color: #000; font-weight: 700;
+      padding: 12px 28px; border-radius: 24px; border: none; font-size: 0.95rem;
+      cursor: pointer; box-shadow: 0 6px 20px rgba(30,215,96,0.4);
     }
 
-    /* Siyah Footer */
     .footer-dark {
       background: #141813;
       border: 1px solid rgba(255, 255, 255, 0.08);
@@ -338,27 +494,20 @@
       font-size: 0.78rem; font-weight: 500; cursor: pointer;
     }
 
-    /* Modal */
-    .modal-overlay {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.65); backdrop-filter: blur(4px);
-      display: flex; align-items: center; justify-content: center;
-      padding: 20px; z-index: 999;
+    .sparkle-heart {
+      position: fixed;
+      pointer-events: none;
+      font-size: 1.3rem;
+      animation: floatUp 1.2s ease-out forwards;
+      z-index: 999999;
     }
-    .modal-content {
-      background: #1c221b; border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 22px; width: 100%; max-width: 340px;
-      padding: 22px 18px; color: #fff; text-align: center;
-      box-shadow: 0 16px 36px rgba(0,0,0,0.5);
+    @keyframes floatUp {
+      0% { opacity: 1; transform: translate(0, 0) scale(0.6); }
+      100% { opacity: 0; transform: translate(var(--tx), -70px) scale(1.4); }
     }
-    .modal-content h3 { font-size: 1.15rem; color: #fef08a; margin-bottom: 10px; font-family: 'Playfair Display', serif; }
-    .modal-content p { font-size: 0.88rem; line-height: 1.55; color: #d1d5db; margin-bottom: 18px; }
-    .modal-close-btn { background: var(--accent); color: #fff; border: none; padding: 9px 24px; border-radius: 16px; font-size: 0.85rem; cursor: pointer; }
   </style>
 </head>
-<body>
-
-<div class="wrapper">
+<body onclick="spawnSparkle(event)">
 
   <!-- 1. KİLİT KARTI -->
   <div class="lock-wrapper" id="lockWrapper">
@@ -376,348 +525,581 @@
   </div>
 
   <!-- SİTENİN ANA İÇERİĞİ -->
-  <div id="mainContent" class="hidden" style="display: flex; flex-direction: column; gap: 26px;">
+  <div id="mainContent" class="hidden" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
 
-    <!-- 2. ÇOCUKLUK GÖRSELLERİ -->
-    <div class="card starry-card">
-      <div class="tape"></div>
-      <h2>Miniğim ve miniğimin ekürisi 🌸</h2>
-      <p class="subtitle">Yıllar öncesinden bugüne yazılan en güzel tesadüf...</p>
+    <!-- 2. PEMBE YILDIZLI TAM EKRAN KARŞILAMA -->
+    <section class="hero-pink">
+      <h1 class="hero-title">İyi ki Doğdun Sarışınım ✨</h1>
+      <p class="hero-sub">Seninle geçen her saniye ömrüme ömür katıyor...</p>
       
-      <div class="polaroid-group">
-        <div class="polaroid">
-          <img src="989c4333-c57c-4a58-9233-bab6a15e385b.jpeg" alt="Küçük Ali">
-          <span>Küçük Ali 🧸</span>
-        </div>
-        <div class="polaroid p2">
-          <img src="a39691f2-1800-444e-8d7c-a3a427a25961.jpeg" alt="Küçük Ben">
-          <span>Ve Ekürisi 🎀</span>
-        </div>
-      </div>
-      <p style="font-size: 0.88rem; line-height: 1.55; color: #2e2219; font-weight: 500; text-shadow: 0 1px 2px rgba(255,255,255,0.7);">
-        Farklı zamanlarda büyüyüp kalplerimizin birleştiği o güne şükürler olsun!
-      </p>
-    </div>
+      <a href="#storySection" class="scroll-hint">
+        <span>Aşağı Kaydır</span>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+      </a>
+    </section>
 
-    <!-- 3. PUZZLE KARTI -->
-    <div class="card" id="puzzleCard">
-      <div class="tape"></div>
-      <h2>Bizim Parçamız 🧩</h2>
-      <p class="subtitle">Parçalara dokunarak yerlerini değiştir ve tamamla!</p>
-      <div class="puzzle-grid" id="puzzle"></div>
-      <p id="puzzleSuccess" class="subtitle" style="color: var(--accent); font-weight: 600; margin-top: 8px;"></p>
-    </div>
+    <div class="wrapper" id="storySection">
 
-    <!-- 4. SPOTIFY KARTI (ANIL PİYANCI - BERABER BÜYÜDÜK) -->
-    <div class="card" id="spotifyCard">
-      <div class="tape"></div>
-      <h2>Bizim Şarkımız ♫</h2>
-      <p class="subtitle">Anıl Piyancı - Beraber Büyüdük</p>
-      <div style="border-radius:14px; overflow:hidden;">
-        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/1AlG0sHFDQJP2HdXyQb8bL?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-      </div>
-    </div>
+      <!-- 3. İNTERAKTİF 3D KEDİLİ PASTA & MUM ÜFLEME -->
+      <div class="card">
+        <div class="tape"></div>
+        <h2>Bir Dilek Tut Paşam 🎂</h2>
+        <p class="subtitle">Muma dokun ve tüm kalbinle dileğini dile!</p>
 
-    <!-- 5. 10 ANILIK GÖRSEL (2'Lİ YAN YANA DÜZEN) -->
-    <div class="card">
-      <div class="tape"></div>
-      <h2>Unutulmaz Anlarımız 📸</h2>
-      <p class="subtitle">Her anı dün gibi aklımda...</p>
-      
-      <div class="memories-grid">
-        <div class="memory-card">
-          <img src="IMG_3597.jpeg" alt="öpüşememe sorunsalı">
-          <div class="content"><h4>öpüşememe sorunsalı</h4></div>
-        </div>
-        <div class="memory-card">
-          <img src="IMG_3689.jpeg" alt="mezun çift">
-          <div class="content"><h4>mezun çift</h4></div>
-        </div>
-        <div class="memory-card">
-          <img src="AF9D5DCD-3D40-4F03-A423-5F84BE594329.jpeg" alt="merhaba kula">
-          <div class="content"><h4>merhaba kula</h4></div>
-        </div>
-        <div class="memory-card">
-          <img src="IMG_4996.jpeg" alt="sanırım soğuk hava">
-          <div class="content"><h4>sanırım soğuk hava</h4></div>
-        </div>
-        <div class="memory-card">
-          <img src="IMG_5141.jpeg" alt="luck sahipleri">
-          <div class="content"><h4>luck sahipleri</h4></div>
-        </div>
-        <div class="memory-card">
-          <img src="IMG_1915.jpeg" alt="güzel kombin nalet gün">
-          <div class="content"><h4>güzel kombin nalet gün</h4></div>
-        </div>
-        <div class="memory-card">
-          <img src="F3062DF2-F801-44F4-BC79-D5C61DCDD61F.jpeg" alt="YA AŞIĞIM">
-          <div class="content"><h4>YA AŞIĞIM</h4></div>
-        </div>
-        <div class="memory-card">
-          <img src="IMG_6795.jpeg" alt="benim yakışıklı futbolcum">
-          <div class="content"><h4>benim yakışıklı futbolcum</h4></div>
-        </div>
-        <div class="memory-card">
-          <img src="IMG_3083.jpeg" alt="hop babalar kampüs">
-          <div class="content"><h4>hop babalar kampüs</h4></div>
-        </div>
-        <div class="memory-card">
-          <img src="IMG_7603.jpeg" alt="megatron misali">
-          <div class="content"><h4>megatron misali</h4></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 6. SPİRAL MEKTUP -->
-    <div class="card letter-card">
-      <div class="spiral-rings">
-        <div class="ring"></div><div class="ring"></div><div class="ring"></div>
-        <div class="ring"></div><div class="ring"></div><div class="ring"></div>
-        <div class="ring"></div><div class="ring"></div><div class="ring"></div>
-      </div>
-      <h2 style="font-size: 1.3rem; margin-bottom: 12px; font-family: 'Playfair Display', serif;">Aşkımıza Mektup 💌</h2>
-      <div class="letter-body">
-        Ali'm, sarışınım...<br><br>
-        Hayatıma girdiğin ilk andan beri bana kattığın neşeyi, içimdeki o çocuksu huzuru kelimelerle anlatmak yetersiz kalır. Seninle geçen her gün, birlikte kurduğumuz her hayal benim en kıymetli sığınağım oldu.<br><br>
-        İyi ki doğdun, iyi ki yollarımız kesişti ve iyi ki benim oldun. Birlikte nice upuzun, kahkahalı ve sevgi dolu yaşlara!
-      </div>
-    </div>
-
-    <!-- 7. SAYFALARI ÇEVRİLEN DEFTER -->
-    <div class="card">
-      <div class="tape"></div>
-      <h2>Komik Anılar Defteri 📖</h2>
-      <p class="subtitle">Kapağa dokun ve defteri arala!</p>
-      
-      <div class="notebook-container">
-        <div class="notebook-cover" id="bookCover" onclick="openNotebook()">
-          <span style="font-size:2.8rem; margin-bottom:12px;">📒</span>
-          <h3 style="font-family:'Playfair Display', serif; font-size:1.35rem; color:#fdfbf7; font-weight:600;">Bizim Gülmekten Koptuğumuz Anlar</h3>
-          <p style="font-size:0.85rem; margin-top:10px; color:#e0d2be; letter-spacing:0.5px;">Açmak için dokun ✨</p>
-        </div>
-
-        <div class="notebook-pages" id="bookPages">
-          <div class="book-page" id="page1">
-            <img src="IMG_4714.jpeg" alt="aşığım şu gülüşee">
-            <p>aşığım şu gülüşee</p>
-          </div>
-          <div class="book-page hidden" id="page2">
-            <img src="IMG_8366.jpeg" alt="uykucular">
-            <p>uykucular</p>
-          </div>
-          <div class="book-page hidden" id="page3">
-            <img src="IMG_3962.jpeg" alt="AAAA">
-            <p>AAAA</p>
-          </div>
-          <div class="book-page hidden" id="page4">
-            <img src="IMG_3885.jpeg" alt="karpuz kötüydü kocam haklı">
-            <p>karpuz kötüydü kocam haklı</p>
+        <div class="cake-stage">
+          <div class="cat-wrapper">
+            <svg viewBox="0 0 120 120" width="100%" height="100%">
+              <ellipse cx="60" cy="70" rx="36" ry="34" fill="#fbbf24" />
+              <polygon points="34,44 42,20 54,40" fill="#f59e0b" />
+              <polygon points="38,42 43,26 50,40" fill="#fbcfe8" />
+              <polygon points="86,44 78,20 66,40" fill="#f59e0b" />
+              <polygon points="82,42 77,26 70,40" fill="#fbcfe8" />
+              <ellipse cx="48" cy="62" rx="4" ry="6" fill="#1f2937" />
+              <ellipse cx="72" cy="62" rx="4" ry="6" fill="#1f2937" />
+              <circle cx="49" cy="60" r="1.5" fill="#fff" />
+              <circle cx="73" cy="60" r="1.5" fill="#fff" />
+              <polygon points="60,68 57,71 63,71" fill="#ec4899" />
+              <path d="M57,72 Q60,75 63,72" stroke="#1f2937" stroke-width="1.5" fill="none" />
+              <circle cx="42" cy="68" r="5" fill="#f472b6" opacity="0.4" />
+              <circle cx="78" cy="68" r="5" fill="#f472b6" opacity="0.4" />
+              <ellipse cx="48" cy="85" rx="10" ry="12" fill="#fbbf24" transform="rotate(-20 48 85)" />
+              <ellipse cx="72" cy="85" rx="10" ry="12" fill="#fbbf24" transform="rotate(20 72 85)" />
+              <path d="M60,82 C60,78 54,74 50,78 C45,83 60,94 60,94 C60,94 75,83 70,78 C66,74 60,78 60,82 Z" fill="#ef4444" />
+            </svg>
           </div>
 
-          <div class="book-nav">
-            <button class="book-btn" onclick="prevPage()">‹ Önceki</button>
-            <span id="pageIndicator" style="font-size:0.85rem; color:#666; align-self:center; font-weight:500;">1 / 4</span>
-            <button class="book-btn" onclick="nextPage()">Sonraki ›</button>
+          <div class="cake-base">
+            <div class="cake-frosting"></div>
+            <div class="candle" onclick="blowCandle()">
+              <div class="flame" id="candleFlame"></div>
+              <div class="smoke hidden" id="candleSmoke"></div>
+            </div>
+          </div>
+        </div>
+
+        <p id="cakeWishText" class="subtitle" style="color: var(--accent); font-weight: 600; margin-top: 14px; min-height: 18px;"></p>
+      </div>
+
+      <!-- 4. BİRLİKTE GEÇEN ZAMAN SAYACI -->
+      <div class="card">
+        <div class="tape"></div>
+        <h2>Birlikte Büyüyoruz ⏳</h2>
+        <p class="subtitle">3 Mart 2025'ten beri ömrüme kattığın her an...</p>
+
+        <div class="counter-grid">
+          <div class="counter-item">
+            <span class="counter-num" id="daysCount">0</span>
+            <span class="counter-label">Gün</span>
+          </div>
+          <div class="counter-item">
+            <span class="counter-num" id="hoursCount">0</span>
+            <span class="counter-label">Saat</span>
+          </div>
+          <div class="counter-item">
+            <span class="counter-num" id="minsCount">0</span>
+            <span class="counter-label">Dakika</span>
+          </div>
+          <div class="counter-item">
+            <span class="counter-num" id="secsCount">0</span>
+            <span class="counter-label">Saniye</span>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- 8. FOOTER -->
-    <footer class="footer-dark">
-      <div class="footer-title">iyiki dogdun pasam 😙</div>
-      <div class="footer-note">Sana özel küçük sürpriz pencereler:</div>
-      <div class="footer-actions">
-        <button class="footer-btn" onclick="openModal('wish')">🎁 Bir Dilek Tut</button>
-        <button class="footer-btn" onclick="openModal('quote')">🎶 Sözümüz</button>
-        <button class="footer-btn" onclick="openModal('secret')">🤫 Gizli Not</button>
+      <!-- 5. KULLANILABİLİR SEVGİ KUPONLARI -->
+      <div class="card">
+        <div class="tape"></div>
+        <h2>Ali'ye Özel Sevgi Kuponları 🎟️</h2>
+        <p class="subtitle">Dokun ve istediğin an hakkını kullan!</p>
+
+        <div class="coupons-list">
+          <div class="coupon-card" onclick="useCoupon(this)">
+            <div class="coupon-title">🎫 Sınırsız Sarılma & Öpücük Kuponu</div>
+            <div class="coupon-desc">Geçerlilik süresi: Bir ömür boyu, limitsiz.</div>
+          </div>
+          <div class="coupon-card" onclick="useCoupon(this)">
+            <div class="coupon-title">🎫 'Kocam Haklı' Kuponu</div>
+            <div class="coupon-desc">Ufak tefek tartışmalarda koşulsuz zafer sağlar.</div>
+          </div>
+          <div class="coupon-card" onclick="useCoupon(this)">
+            <div class="coupon-title">🎫 Canının Çektiği Yemeği Ismarlatma</div>
+            <div class="coupon-desc">Hesap benden, keyif sarışınımdan!</div>
+          </div>
+        </div>
       </div>
-    </footer>
 
+      <!-- 6. ÇOCUKLUK GÖRSELLERİ -->
+      <div class="card starry-card">
+        <div class="tape"></div>
+        <h2>Miniğim ve miniğimin ekürisi 🌸</h2>
+        <p class="subtitle">Yıllar öncesinden bugüne yazılan en güzel tesadüf...</p>
+        
+        <div class="polaroid-group">
+          <div class="polaroid">
+            <img src="989c4333-c57c-4a58-9233-bab6a15e385b.jpeg" alt="Küçük Ali">
+            <span>Küçük Ali 🧸</span>
+          </div>
+          <div class="polaroid p2">
+            <img src="a39691f2-1800-444e-8d7c-a3a427a25961.jpeg" alt="Küçük Ben">
+            <span>Ve Ekürisi 🎀</span>
+          </div>
+        </div>
+        <p style="font-size: 0.88rem; line-height: 1.55; color: #2e2219; font-weight: 500; text-shadow: 0 1px 2px rgba(255,255,255,0.7);">
+          Farklı zamanlarda büyüyüp kalplerimizin birleştiği o güne şükürler olsun!
+        </p>
+      </div>
+
+      <!-- 7. PUZZLE KARTI -->
+      <div class="card" id="puzzleCard">
+        <div class="tape"></div>
+        <h2>Bizim Parçamız 🧩</h2>
+        <p class="subtitle">Parçalara dokunarak yerlerini değiştir ve tamamla!</p>
+        <div class="puzzle-grid" id="puzzle"></div>
+        <p id="puzzleSuccess" class="subtitle" style="color: var(--accent); font-weight: 600; margin-top: 8px;"></p>
+      </div>
+
+      <!-- 8. SPOTIFY KARTI -->
+      <div class="card" id="spotifyCard">
+        <div class="tape"></div>
+        <h2>Bizim Şarkımız ♫</h2>
+        <p class="subtitle">Anıl Piyancı - Beraber Büyüdük</p>
+        <div style="border-radius:14px; overflow:hidden;">
+          <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/1AlG0sHFDQJP2HdXyQb8bL?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
+      </div>
+
+      <!-- 9. İLK 10 ANILIK GÖRSEL (2'li Yan Yana) -->
+      <div class="card">
+        <div class="tape"></div>
+        <h2>Unutulmaz Anlarımız 📸</h2>
+        <p class="subtitle">Her anı dün gibi aklımda...</p>
+        
+        <div class="memories-grid">
+          <div class="memory-card">
+            <img src="IMG_3597.jpeg" alt="öpüşememe sorunsalı">
+            <div class="content"><h4>öpüşememe sorunsalı</h4></div>
+          </div>
+          <div class="memory-card">
+            <img src="IMG_3689.jpeg" alt="mezun çift">
+            <div class="content"><h4>mezun çift</h4></div>
+          </div>
+          <div class="memory-card">
+            <img src="AF9D5DCD-3D40-4F03-A423-5F84BE594329.jpeg" alt="merhaba kula">
+            <div class="content"><h4>merhaba kula</h4></div>
+          </div>
+          <div class="memory-card">
+            <img src="IMG_4996.jpeg" alt="sanırım soğuk hava">
+            <div class="content"><h4>sanırım soğuk hava</h4></div>
+          </div>
+          <div class="memory-card">
+            <img src="IMG_5141.jpeg" alt="luck sahipleri">
+            <div class="content"><h4>luck sahipleri</h4></div>
+          </div>
+          <div class="memory-card">
+            <img src="IMG_1915.jpeg" alt="güzel kombin nalet gün">
+            <div class="content"><h4>güzel kombin nalet gün</h4></div>
+          </div>
+          <div class="memory-card">
+            <img src="F3062DF2-F801-44F4-BC79-D5C61DCDD61F.jpeg" alt="YA AŞIĞIM">
+            <div class="content"><h4>YA AŞIĞIM</h4></div>
+          </div>
+          <div class="memory-card">
+            <img src="IMG_6795.jpeg" alt="benim yakışıklı futbolcum">
+            <div class="content"><h4>benim yakışıklı futbolcum</h4></div>
+          </div>
+          <div class="memory-card">
+            <img src="IMG_3083.jpeg" alt="hop babalar kampüs">
+            <div class="content"><h4>hop babalar kampüs</h4></div>
+          </div>
+          <div class="memory-card">
+            <img src="IMG_7603.jpeg" alt="megatron misali">
+            <div class="content"><h4>megatron misali</h4></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10. 10 SAYFALIK DEFTER -->
+      <div class="card">
+        <div class="tape"></div>
+        <h2>Komik & Özel Anılar Defteri 📖</h2>
+        <p class="subtitle">Kapağa dokun ve defteri arala!</p>
+        
+        <div class="notebook-container">
+          <div class="notebook-cover" id="bookCover" onclick="openNotebook()">
+            <span style="font-size:2.8rem; margin-bottom:12px;">📒</span>
+            <h3 style="font-family:'Playfair Display', serif; font-size:1.35rem; color:#fdfbf7; font-weight:600;">Bizim Gülmekten Koptuğumuz Anlar</h3>
+            <p style="font-size:0.85rem; margin-top:10px; color:#e0d2be; letter-spacing:0.5px;">Açmak için dokun ✨</p>
+          </div>
+
+          <div class="notebook-pages" id="bookPages">
+            <div class="book-page" id="page1">
+              <img src="IMG_4714.jpeg" alt="aşığım şu gülüşee">
+              <p>aşığım şu gülüşee</p>
+            </div>
+            <div class="book-page hidden" id="page2">
+              <img src="IMG_8366.jpeg" alt="uykucular">
+              <p>uykucular</p>
+            </div>
+            <div class="book-page hidden" id="page3">
+              <img src="IMG_3962.jpeg" alt="AAAA">
+              <p>AAAA</p>
+            </div>
+            <div class="book-page hidden" id="page4">
+              <img src="IMG_3885.jpeg" alt="karpuz kötüydü kocam haklı">
+              <p>karpuz kötüydü kocam haklı</p>
+            </div>
+            <div class="book-page hidden" id="page5">
+              <img src="a9219f0f-c468-4475-93d0-17ffbafc467c.jpeg" alt="best couple ever v1">
+              <p>best couple ever v1 ✨</p>
+            </div>
+            <div class="book-page hidden" id="page6">
+              <img src="d8fdd3d0-a7e9-4823-9987-2b1a7e0c5207.jpeg" alt="best couple ever v1">
+              <p>best couple ever v1 🤍</p>
+            </div>
+            <div class="book-page hidden" id="page7">
+              <img src="IMG_7526.jpeg" alt="Maymunlar">
+              <p>Maymunlar 🐒</p>
+            </div>
+            <div class="book-page hidden" id="page8">
+              <img src="IMG_7528.jpeg" alt="Maymunlar">
+              <p>Maymunlar 🐒</p>
+            </div>
+            <div class="book-page hidden" id="page9">
+              <img src="IMG_5767.jpeg" alt="Yılbaşııı">
+              <p>Yılbaşııı 🎄✨</p>
+            </div>
+            <div class="book-page hidden" id="page10">
+              <img src="IMG_1944.jpeg" alt="Yılbaşııı">
+              <p>Yılbaşııı 🎄✨</p>
+            </div>
+
+            <div class="book-nav">
+              <button class="book-btn" onclick="prevPage()">‹ Önceki</button>
+              <span id="pageIndicator" style="font-size:0.85rem; color:#666; align-self:center; font-weight:500;">1 / 10</span>
+              <button class="book-btn" onclick="nextPage()">Sonraki ›</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 11. DEFTERDEN HEMEN SONRAKİ ÖZEL ANILAR (2'Lİ YAN YANA KARTLAR) -->
+      <div class="card">
+        <div class="tape"></div>
+        <h2>Özel Karelerimiz ✨</h2>
+        <p class="subtitle">Her anı dün gibi aklımda...</p>
+        
+        <div class="memories-grid">
+          <div class="memory-card">
+            <img src="IMG_3098.jpeg" alt="Hot couple">
+            <div class="content"><h4>Hot couple 🔥</h4></div>
+          </div>
+          <div class="memory-card">
+            <img src="IMG_5394.jpeg" alt="Hot couple">
+            <div class="content"><h4>Hot couple 🔥</h4></div>
+          </div>
+          <div class="memory-card">
+            <img src="db3de0d3-165e-4644-aa38-0710c88378d3.jpeg" alt="Bat couple">
+            <div class="content"><h4>Bat couple 🦇</h4></div>
+          </div>
+          <div class="memory-card">
+            <img src="76f5fd43-fa4e-431d-84c2-728f92146a2c.jpeg" alt="Bat couple">
+            <div class="content"><h4>Bat couple 🦇</h4></div>
+          </div>
+          <div class="memory-card">
+            <img src="IMG_5001.jpeg" alt="🧐🧐🥸">
+            <div class="content"><h4>🧐🧐🥸</h4></div>
+          </div>
+          <div class="memory-card">
+            <img src="IMG_3887.jpeg" alt="🧐🧐🥸">
+            <div class="content"><h4>🧐🧐🥸</h4></div>
+          </div>
+          <div class="memory-card">
+            <img src="IMG_4950.jpeg" alt="Uyuma artık">
+            <div class="content"><h4>Uyuma artık 😴</h4></div>
+          </div>
+          <div class="memory-card">
+            <img src="IMG_6295.jpeg" alt="Uyuma artık">
+            <div class="content"><h4>Uyuma artık 😴</h4></div>
+          </div>
+          <div class="memory-card">
+            <img src="IMG_4804.jpeg" alt="Cat person's">
+            <div class="content"><h4>Cat person's 🐱</h4></div>
+          </div>
+          <div class="memory-card">
+            <img src="IMG_4806.jpeg" alt="Cat person's">
+            <div class="content"><h4>Cat person's 🐱</h4></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 12. SPİRAL MEKTUP -->
+      <div class="card letter-card">
+        <div class="spiral-rings">
+          <div class="ring"></div><div class="ring"></div><div class="ring"></div>
+          <div class="ring"></div><div class="ring"></div><div class="ring"></div>
+          <div class="ring"></div><div class="ring"></div><div class="ring"></div>
+        </div>
+        <h2 style="font-size: 1.3rem; margin-bottom: 12px; font-family: 'Playfair Display', serif;">Aşkımıza Mektup 💌</h2>
+        <div class="letter-body">
+          Ali'm, sarışınım...<br><br>
+          Hayatıma girdiğin ilk andan beri bana kattığın neşeyi, içimdeki o çocuksu huzuru kelimelerle anlatmak yetersiz kalır. Seninle geçen her gün, birlikte kurduğumuz her hayal benim en kıymetli sığınağım oldu.<br><br>
+          İyi ki doğdun, iyi ki yollarımız kesişti ve iyi ki benim oldun. Birlikte nice upuzun, kahkahalı ve sevgi dolu yaşlara!
+        </div>
+      </div>
+
+      <!-- 13. FOOTER -->
+      <footer class="footer-dark">
+        <div class="footer-title">iyiki dogdun pasam 😙</div>
+        <div class="footer-note">Sana özel küçük sürpriz pencereler:</div>
+        <div class="footer-actions">
+          <button class="footer-btn" onclick="openModal('wish')">🎁 Bir Dilek Tut</button>
+          <button class="footer-btn" onclick="openModal('quote')">🎶 Sözümüz</button>
+          <button class="footer-btn" onclick="openModal('secret')">🤫 Gizli Not</button>
+        </div>
+      </footer>
+
+    </div>
   </div>
 
-</div>
+  <!-- 15 SANİYELİK KİLİTLİ SPOTIFY EKRANI -->
+  <div id="spotifyFullscreen" class="spotify-fullscreen hidden">
+    <div class="spotify-top-bar">
+      <span class="spotify-badge">✨ Özel Şarkımız Çalıyor</span>
+      <span class="spotify-timer" id="spotifyTimer">⏳ 15 sn</span>
+    </div>
+    
+    <div class="spotify-embed-container">
+      <iframe style="border-radius:16px" src="https://open.spotify.com/embed/track/1AlG0sHFDQJP2HdXyQb8bL?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
 
-<!-- PUZZLE TAMAMLANINCA AÇILAN 15 SANİYELİK KİLİTLİ TAM EKRAN SPOTIFY EKRANI -->
-<div id="spotifyFullscreen" class="spotify-fullscreen hidden">
-  <div class="spotify-top-bar">
-    <span class="spotify-badge">✨ Özel Şarkımız Çalıyor</span>
-    <span class="spotify-timer" id="spotifyTimer">⏳ 15 sn</span>
+    <p class="spotify-note">"Biz beraber büyüdük..." 💚</p>
+
+    <button id="spotifyContinueBtn" class="spotify-continue-btn hidden" onclick="closeSpotifyOverlay()">
+      Siteye Devam Et ♡
+    </button>
   </div>
-  
-  <div class="spotify-embed-container">
-    <iframe style="border-radius:16px" src="https://open.spotify.com/embed/track/1AlG0sHFDQJP2HdXyQb8bL?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+  <!-- Pop-up (Modal) -->
+  <div id="modalOverlay" class="modal-overlay hidden" onclick="closeModalOnBg(event)">
+    <div class="modal-content">
+      <h3 id="modalTitle">Başlık</h3>
+      <p id="modalBody">İçerik buraya gelecek...</p>
+      <button class="modal-close-btn" onclick="closeModal()">Kapat ♡</button>
+    </div>
   </div>
 
-  <p class="spotify-note">"Biz beraber büyüdük..." 💚</p>
-
-  <button id="spotifyContinueBtn" class="spotify-continue-btn hidden" onclick="closeSpotifyOverlay()">
-    Siteye Devam Et ♡
-  </button>
-</div>
-
-<!-- Modal -->
-<div id="modalOverlay" class="modal-overlay hidden" onclick="closeModalOnBg(event)">
-  <div class="modal-content">
-    <h3 id="modalTitle">Başlık</h3>
-    <p id="modalBody">İçerik buraya gelecek...</p>
-    <button class="modal-close-btn" onclick="closeModal()">Kapat ♡</button>
-  </div>
-</div>
-
-<script>
-  function unlockSite() {
-    const val = document.getElementById('passInput').value.trim();
-    if(val !== "") {
-      document.getElementById('lockWrapper').classList.add('hidden');
-      document.getElementById('mainContent').classList.remove('hidden');
-      window.scrollTo(0, 0);
-    } else {
-      alert("Lütfen bir cevap yaz :)");
+  <script>
+    function unlockSite() {
+      const val = document.getElementById('passInput').value.trim();
+      if(val !== "") {
+        document.getElementById('lockWrapper').classList.add('hidden');
+        document.getElementById('mainContent').classList.remove('hidden');
+        window.scrollTo(0, 0);
+      } else {
+        alert("Lütfen bir cevap yaz :)");
+      }
     }
-  }
 
-  // Puzzle Mantığı (Yüzlere odaklanmış kadraj)
-  const currentPuzzleImg = "af2888eb-7c2d-4fab-918f-8e5414292192.jpeg"; 
-  let pieces = [0, 1, 2, 3];
-  let shuffled = [2, 0, 3, 1];
-  let selectedIdx = null;
+    let candleBlown = false;
+    function blowCandle() {
+      if (candleBlown) return;
+      candleBlown = true;
+      document.getElementById('candleFlame').classList.add('hidden');
+      document.getElementById('candleSmoke').classList.remove('hidden');
+      document.getElementById('cakeWishText').innerText = "Dileğin tutuldu bile! İyi ki doğdun sarışınım ♡";
 
-  // Üst kadraj için dikey konumlandırma
-  const positions = [
-    { x: "0%", y: "0%" },
-    { x: "100%", y: "0%" },
-    { x: "0%", y: "45%" },
-    { x: "100%", y: "45%" }
-  ];
+      for (let i = 0; i < 25; i++) {
+        setTimeout(() => {
+          const el = document.createElement('div');
+          el.className = 'sparkle-heart';
+          el.innerText = ['💖', '✨', '🎂', '🌸', '🧸'][Math.floor(Math.random() * 5)];
+          el.style.left = (window.innerWidth / 2 + (Math.random() * 200 - 100)) + 'px';
+          el.style.top = (window.innerHeight / 2 + (Math.random() * 100 - 50)) + 'px';
+          el.style.setProperty('--tx', (Math.random() * 120 - 60) + 'px');
+          document.body.appendChild(el);
+          setTimeout(() => el.remove(), 1200);
+        }, i * 40);
+      }
+    }
 
-  function renderPuzzle() {
-    const grid = document.getElementById('puzzle');
-    grid.innerHTML = '';
-    shuffled.forEach((pieceId, idx) => {
-      const tile = document.createElement('div');
-      tile.className = 'tile' + (selectedIdx === idx ? ' selected' : '');
-      tile.style.backgroundImage = `url('${currentPuzzleImg}')`;
-      tile.style.backgroundPosition = `${positions[pieceId].x} ${positions[pieceId].y}`;
-      tile.onclick = () => selectTile(idx);
-      grid.appendChild(tile);
-    });
-  }
+    const startDate = new Date('2025-03-03T00:00:00');
+    function updateCounter() {
+      const now = new Date();
+      const diff = now - startDate;
 
-  function selectTile(idx) {
-    if (selectedIdx === null) {
-      selectedIdx = idx;
-    } else {
-      let temp = shuffled[selectedIdx];
-      shuffled[selectedIdx] = shuffled[idx];
-      shuffled[idx] = temp;
-      selectedIdx = null;
-      checkWin();
+      if (diff > 0) {
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const mins = Math.floor((diff / 1000 / 60) % 60);
+        const secs = Math.floor((diff / 1000) % 60);
+
+        document.getElementById('daysCount').innerText = days;
+        document.getElementById('hoursCount').innerText = hours;
+        document.getElementById('minsCount').innerText = mins;
+        document.getElementById('secsCount').innerText = secs;
+      }
+    }
+    setInterval(updateCounter, 1000);
+    updateCounter();
+
+    function useCoupon(el) {
+      if (!el.classList.contains('used')) {
+        el.classList.add('used');
+        const stamp = document.createElement('div');
+        stamp.className = 'coupon-stamp';
+        stamp.innerText = 'KULLANILDI ♡';
+        el.appendChild(stamp);
+      }
+    }
+
+    const currentPuzzleImg = "af2888eb-7c2d-4fab-918f-8e5414292192.jpeg"; 
+    let pieces = [0, 1, 2, 3];
+    let shuffled = [2, 0, 3, 1];
+    let selectedIdx = null;
+
+    const positions = [
+      { x: "0%", y: "0%" },
+      { x: "100%", y: "0%" },
+      { x: "0%", y: "45%" },
+      { x: "100%", y: "45%" }
+    ];
+
+    function renderPuzzle() {
+      const grid = document.getElementById('puzzle');
+      grid.innerHTML = '';
+      shuffled.forEach((pieceId, idx) => {
+        const tile = document.createElement('div');
+        tile.className = 'tile' + (selectedIdx === idx ? ' selected' : '');
+        tile.style.backgroundImage = `url('${currentPuzzleImg}')`;
+        tile.style.backgroundPosition = `${positions[pieceId].x} ${positions[pieceId].y}`;
+        tile.onclick = () => selectTile(idx);
+        grid.appendChild(tile);
+      });
+    }
+
+    function selectTile(idx) {
+      if (selectedIdx === null) {
+        selectedIdx = idx;
+      } else {
+        let temp = shuffled[selectedIdx];
+        shuffled[selectedIdx] = shuffled[idx];
+        shuffled[idx] = temp;
+        selectedIdx = null;
+        checkWin();
+      }
+      renderPuzzle();
+    }
+
+    let puzzleAlreadyWon = false;
+    function checkWin() {
+      if (!puzzleAlreadyWon && shuffled.every((val, i) => val === pieces[i])) {
+        puzzleAlreadyWon = true;
+        document.getElementById('puzzleSuccess').innerText = "Tebrikler! Bütün parçalar yerine oturdu ♡";
+        setTimeout(launchSpotifyFullscreen, 500);
+      }
     }
     renderPuzzle();
-  }
 
-  let puzzleAlreadyWon = false;
-  function checkWin() {
-    if (!puzzleAlreadyWon && shuffled.every((val, i) => val === pieces[i])) {
-      puzzleAlreadyWon = true;
-      document.getElementById('puzzleSuccess').innerText = "Tebrikler! Bütün parçalar yerine oturdu ♡";
-      setTimeout(launchSpotifyFullscreen, 500);
+    function launchSpotifyFullscreen() {
+      const overlay = document.getElementById('spotifyFullscreen');
+      overlay.classList.remove('hidden');
+      document.body.classList.add('locked-scroll');
+
+      let seconds = 15;
+      const timerEl = document.getElementById('spotifyTimer');
+      const continueBtn = document.getElementById('spotifyContinueBtn');
+
+      const countdown = setInterval(() => {
+        seconds--;
+        if (seconds > 0) {
+          timerEl.innerText = `⏳ ${seconds} sn`;
+        } else {
+          clearInterval(countdown);
+          timerEl.innerText = "✨ Dinledik";
+          continueBtn.classList.remove('hidden');
+        }
+      }, 1000);
     }
-  }
-  renderPuzzle();
 
-  // 15 Saniyelik Kilitli Tam Ekran Spotify Deneyimi
-  function launchSpotifyFullscreen() {
-    const overlay = document.getElementById('spotifyFullscreen');
-    overlay.classList.remove('hidden');
-    document.body.classList.add('locked-scroll');
+    function closeSpotifyOverlay() {
+      document.getElementById('spotifyFullscreen').classList.add('hidden');
+      document.body.classList.remove('locked-scroll');
+    }
 
-    let seconds = 15;
-    const timerEl = document.getElementById('spotifyTimer');
-    const continueBtn = document.getElementById('spotifyContinueBtn');
+    let currentPage = 1;
+    const totalPages = 10;
 
-    const countdown = setInterval(() => {
-      seconds--;
-      if (seconds > 0) {
-        timerEl.innerText = `⏳ ${seconds} sn`;
-      } else {
-        clearInterval(countdown);
-        timerEl.innerText = "✨ Dinledik";
-        continueBtn.classList.remove('hidden');
+    function openNotebook() {
+      document.getElementById('bookCover').style.display = 'none';
+      document.getElementById('bookPages').style.display = 'block';
+    }
+
+    function updatePage() {
+      for(let i = 1; i <= totalPages; i++) {
+        document.getElementById('page' + i).classList.add('hidden');
       }
-    }, 1000);
-  }
-
-  function closeSpotifyOverlay() {
-    document.getElementById('spotifyFullscreen').classList.add('hidden');
-    document.body.classList.remove('locked-scroll');
-  }
-
-  // Defter Fonksiyonları
-  let currentPage = 1;
-  const totalPages = 4;
-
-  function openNotebook() {
-    document.getElementById('bookCover').style.display = 'none';
-    document.getElementById('bookPages').style.display = 'block';
-  }
-
-  function updatePage() {
-    for(let i = 1; i <= totalPages; i++) {
-      document.getElementById('page' + i).classList.add('hidden');
+      document.getElementById('page' + currentPage).classList.remove('hidden');
+      document.getElementById('pageIndicator').innerText = currentPage + ' / ' + totalPages;
     }
-    document.getElementById('page' + currentPage).classList.remove('hidden');
-    document.getElementById('pageIndicator').innerText = currentPage + ' / ' + totalPages;
-  }
 
-  function nextPage() {
-    if (currentPage < totalPages) {
-      currentPage++;
-      updatePage();
+    function nextPage() {
+      if (currentPage < totalPages) {
+        currentPage++;
+        updatePage();
+      }
     }
-  }
 
-  function prevPage() {
-    if (currentPage > 1) {
-      currentPage--;
-      updatePage();
+    function prevPage() {
+      if (currentPage > 1) {
+        currentPage--;
+        updatePage();
+      }
     }
-  }
 
-  // Modal
-  const modalData = {
-    wish: {
-      title: "Yeni Yaş Dileği ✨",
-      text: "Bu yıl hayatın sana hak ettiğin bütün güzellikleri, başarıyı ve en önemlisi benimle dolu kocaman kahkahaları getirmesini diliyorum paşam!"
-    },
-    quote: {
-      title: "Bizim Şarkımızdan 🎶",
-      text: "'Seninle geçen her saniye, ömrüme ömür katan en güzel melodi...' İyi ki varsın sarışınım."
-    },
-    secret: {
-      title: "Küçük Bir İtiraf 🤫",
-      text: "Sen güldüğünde etraftaki her şeyin sessize alınıp sadece senin sesinin kaldığı anı dünyadaki hiçbir şeye değişmem."
+    const modalData = {
+      wish: {
+        title: "Yeni Yaş Dileği ✨",
+        text: "Bu yıl hayatın sana hak ettiğin bütün güzellikleri, başarıyı ve en önemlisi benimle dolu kocaman kahkahaları getirmesini diliyorum paşam!"
+      },
+      quote: {
+        title: "Bizim Şarkımızdan 🎶",
+        text: "'Seninle geçen her saniye, ömrüme ömür katan en güzel melodi...' İyi ki varsın sarışınım."
+      },
+      secret: {
+        title: "Küçük Bir İtiraf 🤫",
+        text: "Sen güldüğünde etraftaki her şeyin sessize alınıp sadece senin sesinin kaldığı anı dünyadaki hiçbir şeye değişmem."
+      }
+    };
+
+    function openModal(type) {
+      const data = modalData[type];
+      document.getElementById('modalTitle').innerText = data.title;
+      document.getElementById('modalBody').innerText = data.text;
+      document.getElementById('modalOverlay').classList.remove('hidden');
     }
-  };
 
-  function openModal(type) {
-    const data = modalData[type];
-    document.getElementById('modalTitle').innerText = data.title;
-    document.getElementById('modalBody').innerText = data.text;
-    document.getElementById('modalOverlay').classList.remove('hidden');
-  }
-
-  function closeModal() {
-    document.getElementById('modalOverlay').classList.add('hidden');
-  }
-
-  function closeModalOnBg(e) {
-    if (e.target.id === 'modalOverlay') {
-      closeModal();
+    function closeModal() {
+      document.getElementById('modalOverlay').classList.add('hidden');
     }
-  }
-</script>
+
+    function closeModalOnBg(e) {
+      if (e.target.id === 'modalOverlay') {
+        closeModal();
+      }
+    }
+
+    function spawnSparkle(e) {
+      if (e.target.closest('button, input, .tile, .candle, .coupon-card')) return;
+      const el = document.createElement('div');
+      el.className = 'sparkle-heart';
+      el.innerText = ['💖', '✨', '🌸'][Math.floor(Math.random() * 3)];
+      el.style.left = e.clientX + 'px';
+      el.style.top = e.clientY + 'px';
+      el.style.setProperty('--tx', (Math.random() * 40 - 20) + 'px');
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 1200);
+    }
+  </script>
 
 </body>
 </html>
