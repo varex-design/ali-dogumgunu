@@ -162,7 +162,6 @@
       padding: 24px 14px 44px;
     }
 
-    /* KEDİ VE PASTA HİZALAMASI DÜZELTİLDİ */
     .cake-stage {
       position: relative;
       width: 250px;
@@ -201,11 +200,11 @@
       border-radius: 45px / 20px;
       box-shadow: 0 4px 6px rgba(0,0,0,0.06);
     }
-    /* MUM TAM PASTANIN ÜZERİNE OTURTULDU */
     .candle {
       position: absolute;
       top: -28px;
-      right: 48px;
+      left: 50%;
+      transform: translateX(-50%);
       width: 10px;
       height: 38px;
       background: repeating-linear-gradient(45deg, #fef08a, #fef08a 6px, #f59e0b 6px, #f59e0b 12px);
@@ -479,29 +478,35 @@
     .spotify-badge { font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; opacity: 0.9; font-weight: 600; }
     .spotify-timer { background: rgba(255,255,255,0.18); padding: 5px 12px; border-radius: 20px; font-size: 0.78rem; font-weight: 600; }
     
-    .spotify-big-btn {
+    .play-trigger-btn {
       background: #1ed760;
       color: #000;
       border: none;
-      padding: 18px 32px;
+      padding: 16px 32px;
       border-radius: 35px;
       font-size: 1.1rem;
       font-weight: 800;
       cursor: pointer;
       box-shadow: 0 8px 25px rgba(30,215,96,0.7);
       animation: pulseBtn 1.2s infinite;
-      margin: 20px 0;
-      text-decoration: none;
-      display: inline-block;
+      margin: 15px 0;
     }
     @keyframes pulseBtn {
       0% { transform: scale(1); }
       50% { transform: scale(1.06); }
       100% { transform: scale(1); }
     }
-    .spotify-note { font-family: 'Caveat', cursive; font-size: 1.5rem; color: #fef08a; margin-top: 15px; }
+    .spotify-embed-container {
+      width: 100%;
+      max-width: 320px;
+      margin: 10px 0;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .spotify-note { font-family: 'Caveat', cursive; font-size: 1.4rem; color: #fef08a; margin-top: 10px; }
     .spotify-continue-btn {
-      margin-top: 20px; background: rgba(255,255,255,0.2); color: #fff; font-weight: 600;
+      margin-top: 15px; background: rgba(255,255,255,0.2); color: #fff; font-weight: 600;
       padding: 10px 24px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.3); font-size: 0.88rem;
       cursor: pointer;
     }
@@ -588,7 +593,7 @@
 </head>
 <body onclick="spawnSparkle(event)">
 
-  <!-- 1. KİLİT KARTI (SADECE DOĞRU CEVAP KABUL EDER) -->
+  <!-- 1. KİLİT KARTI -->
   <div class="lock-wrapper" id="lockWrapper">
     <div class="card" id="lockCard">
       <div class="tape"></div>
@@ -649,7 +654,7 @@
 
           <div class="cake-base">
             <div class="cake-frosting"></div>
-            <!-- MUM YERİ DÜZELTİLDİ -->
+            <!-- MUM TAM ORTADA -->
             <div class="candle" onclick="blowCandle()">
               <div class="flame" id="candleFlame"></div>
               <div class="smoke hidden" id="candleSmoke"></div>
@@ -939,23 +944,25 @@
     </div>
   </div>
 
-  <!-- SPOTIFY TAM EKRAN -->
+  <!-- SPOTIFY TAM EKRAN VE DOKUNUNCA ÇALAN SİSTEM -->
   <div id="spotifyFullscreen" class="spotify-fullscreen hidden">
     <div class="spotify-top-bar">
       <span class="spotify-badge">✨ Özel Şarkımız</span>
-      <span class="spotify-timer" id="spotifyTimer">🎵 Harika Müzik</span>
+      <span class="spotify-timer" id="spotifyTimer">🎵 Buluşma Noktası</span>
     </div>
 
-    <p style="font-size: 1.1rem; margin-bottom: 10px; font-weight: 500;">Bulmacayı çözdün, sıra şarkımızda!</p>
+    <p style="font-size: 1.1rem; margin-bottom: 5px; font-weight: 500;">Bulmacayı çözdün, sıra şarkımızda!</p>
+    
+    <button class="play-trigger-btn" onclick="triggerMusicPlay()">
+      ▶ ŞARKIMIZI BAŞLAT ♫
+    </button>
 
-    <a href="https://open.spotify.com/track/1AlG0sHFDQJP2HdXyQb8bL" target="_blank" class="spotify-big-btn">
-      ▶ SPOTIFY'DA DİNLE ♫
-    </a>
+    <div class="spotify-embed-container" id="spotifyEmbedWrapper"></div>
 
     <p class="spotify-note">"Biz beraber büyüdük..." 💚</p>
 
     <button class="spotify-continue-btn" onclick="closeSpotifyOverlay()">
-      Süper, Siteye Dön ♡
+      Süper, Siteye Devam Et ♡
     </button>
   </div>
 
@@ -969,15 +976,15 @@
   </div>
 
   <script>
-    // ŞİFRE KONTROLÜ: SADECE "1" YAZINCA AÇILACAK (İstediğin şifreyi buradaki "1" yerine tırnak içinde yazabilirsin)
+    // KİLİT KARTI: "bilmiom", "bilmiyorum" veya "bilmiyom" YAZINCA AÇILIR
     function unlockSite() {
       const val = document.getElementById('passInput').value.trim().toLowerCase();
-      if(val === "1") {
+      if(val === "bilmiom" || val === "bilmiyorum" || val === "bilmiyom") {
         document.getElementById('lockWrapper').classList.add('hidden');
         document.getElementById('mainContent').classList.remove('hidden');
         window.scrollTo(0, 0);
       } else {
-        alert("Yanlış cevap sevgilim, ipucu: Denklemi dikkatlice çöz :)");
+        alert("Aşk olsun sevgilim, doğru dürüst cevap ver ya da denklemi çöz! :)");
       }
     }
 
@@ -1083,8 +1090,17 @@
 
     function launchSpotifyFullscreen() {
       const overlay = document.getElementById('spotifyFullscreen');
+      const wrapper = document.getElementById('spotifyEmbedWrapper');
+      wrapper.innerHTML = `<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/1AlG0sHFDQJP2HdXyQb8bL?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`;
       overlay.classList.remove('hidden');
       document.body.classList.add('locked-scroll');
+    }
+
+    function triggerMusicPlay() {
+      const btn = document.querySelector('.play-trigger-btn');
+      btn.innerText = "🎶 Çalıyor...";
+      const wrapper = document.getElementById('spotifyEmbedWrapper');
+      wrapper.innerHTML = `<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/1AlG0sHFDQJP2HdXyQb8bL?utm_source=generator&theme=0&autoplay=1" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`;
     }
 
     function closeSpotifyOverlay() {
